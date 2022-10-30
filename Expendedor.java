@@ -1,4 +1,4 @@
-package tarea.pkg3;
+package Tarea3;
 import java.awt.*;
 import javax.swing.*;
 
@@ -22,7 +22,7 @@ class Expendedor extends JPanel{
     }
     
     public void InitInterfaz(){
-        
+         
        this.setBounds(10,10,500,750);
        this.setBackground(Color.blue);
        
