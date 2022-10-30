@@ -1,4 +1,4 @@
-package tarea.pkg3;
+package Tarea3;
 import java.awt.*;
 import javax.swing.*;
 
@@ -18,6 +18,7 @@ public class Comprador extends JPanel{
     }
     
     public Comprador(){
+        
         InitInterfaz();
     }
     

@@ -1,4 +1,4 @@
-package tarea.pkg3;
+package Tarea3;
 
 class Moneda100 extends Moneda{
 

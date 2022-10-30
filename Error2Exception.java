@@ -1,4 +1,4 @@
-package tarea.pkg3;
+package Tarea3;
 
 public class Error2Exception extends Exception{
     public Error2Exception(String mensajeDeError){

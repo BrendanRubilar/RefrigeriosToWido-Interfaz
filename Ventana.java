@@ -1,4 +1,4 @@
-package tarea.pkg3;
+package Tarea3;
 
 import java.awt.Graphics;
 import javax.swing.JFrame;
@@ -19,9 +19,6 @@ public class Ventana extends JFrame{
         PanelPrincipal panel = new PanelPrincipal(this);
         this.add(panel); //SE AÑADED ESTE JPANEL AL JFRAME VENTANA (Junto a expendedor y comprador)
         
-
-        
-
     }
     
     public void paint (Graphics g) { 

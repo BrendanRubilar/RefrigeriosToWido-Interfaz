@@ -1,4 +1,4 @@
-package tarea.pkg3;
+package Tarea3;
 
 import java.awt.*;
 import javax.swing.*;
@@ -19,14 +19,22 @@ public class PanelPrincipal extends JPanel{
        VentanaMain.add(exp);
        VentanaMain.add(com);
        
-       
        //JPanel extras para limitar areas
        JPanel SalidaBebidas = new JPanel();
-       SalidaBebidas.setBounds(0,0,300,200);
-       SalidaBebidas.setBackground(Color.white);
-       VentanaMain.add(SalidaBebidas);
-       
+       SalidaBebidas.setBounds(150,600,200,100);
+       SalidaBebidas.setBackground(Color.white);    
+       exp.add(SalidaBebidas);
 
+       Movement mv = new Movement(SalidaBebidas.getComponents());
+
+       //JPanel Deposito monedas 
+       JPanel DepositoMonedas = new JPanel();
+       DepositoMonedas.setBounds(100,600,100,300);
+       DepositoMonedas.setBackground(Color.white);    
+       com.add(DepositoMonedas);
+
+
+       
        
     }
     
@@ -35,7 +43,5 @@ public class PanelPrincipal extends JPanel{
         super.paint(g);
         
     }
-    
 
-    
 }
