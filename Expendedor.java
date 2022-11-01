@@ -11,6 +11,7 @@ class Expendedor extends JPanel{
     private DepositoMonedas vuelto;
     private int Precio;
 
+    @Override
     public void paint (Graphics g) { 
         super.paint(g);
     }
