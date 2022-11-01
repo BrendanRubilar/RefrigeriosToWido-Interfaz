@@ -1,39 +1,22 @@
 package Tarea3;
-import java.awt.*;
-import javax.swing.*;
 
 import java.util.Objects;
 
-class Expendedor extends JPanel{
+class Expendedor{
     private Deposito fanta;
     private Deposito coca;
     private Deposito sprite;
     private DepositoMonedas vuelto;
     private int Precio;
-
-    @Override
-    public void paint (Graphics g) { 
-        super.paint(g);
-    }
     
     public Expendedor(){
-        
-        InitInterfaz();
 
     }
     
-    public void InitInterfaz(){
-         
-       this.setBounds(10,10,500,750);
-       this.setBackground(Color.blue);
-       
-    }
-
     //La maquina tiene un deposito donde almacena el vuelto a entregar
     //Constructor del expendedor, se le entrega la cantidad de bebidas y el precio (Valores iguales para todos los depositos)
     public Expendedor(int cantidad, int precio) {
         
-        InitInterfaz();
         
         this.Precio = precio ;
         coca = new Deposito();

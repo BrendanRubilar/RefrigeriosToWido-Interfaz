@@ -8,9 +8,5 @@ public class MainTemporal {
         Ventana ventana1 = new Ventana();
         ventana1.setVisible(true);
         
-        
-                
-    
-
     }
 }

@@ -4,22 +4,28 @@ import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import javax.swing.JLabel;
+import javax.swing.text.StyledEditorKit.BoldAction;
 
 
 public class Movement implements MouseListener,MouseMotionListener{
 
     private int X,Y;
+	boolean Presionada,flechaEncima;
+	Component target;
 
-    public Movement(Component... pns){
-        for(Component panel : pns){
-            panel.addMouseListener(this);
-            panel.addMouseMotionListener(this);
-        }
+    public Movement(Component a){
+		target = a;
+		a.addMouseListener(this);
+		a.addMouseMotionListener(this);
+
     }
 
 	@Override
 	public void mouseDragged(MouseEvent event) {
         event.getComponent().setLocation((event.getX()+event.getComponent().getX())-X,(event.getY()+event.getComponent().getY())-Y);
+		Presionada = true;
+		
 	}
 
 	@Override
@@ -30,7 +36,7 @@ public class Movement implements MouseListener,MouseMotionListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
+		System.out.println("CLICK SIMPLE");
 		
 	}
 
@@ -38,16 +44,26 @@ public class Movement implements MouseListener,MouseMotionListener{
 	public void mousePressed(MouseEvent event) {
 		X = event.getX();
         Y = event.getY();   
+		Presionada = true;
+
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
+		Presionada = false;
 		
+		if( (target.getX()>=690 && target.getX()<=760)&&(target.getY()>=290 && target.getY()<=380) ){
+			target.setVisible(false);
+			System.out.println("DESAPARECER");
+		}
+
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
+		//TEMPORAL SOLO QUIERO VER COMO QUEDA EL EFECTO
+
+		
 		// TODO Auto-generated method stub
 		
 	}
@@ -55,6 +71,12 @@ public class Movement implements MouseListener,MouseMotionListener{
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
+
 		
 	}
+
+	public Boolean EstadoMoneda(){
+		return Presionada;
+	}
+
 }
