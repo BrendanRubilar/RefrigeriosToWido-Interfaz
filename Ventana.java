@@ -13,27 +13,35 @@ public class Ventana extends JFrame implements ActionListener{
 
     public JPanel panel1;
     public JPanel panelExpendedora;
-    JButton coca,fanta,sprite;
+    JButton coca,fanta,sprite, comprar;
     JLabel BebidaSelec;
     String PrecioBebida;
+    Expendedor expendedorMain; //Auxiliar...
+    Movement movimiento500; //testing...
+    Comprador comprador;
+    int selectedB=9;
 
     public Ventana(){
-        Expendedor Expendedor1 = new Expendedor(2,500);
 
-        PrecioBebida = String.valueOf(Expendedor1.getPrecio());
         setSize(1000,700);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Refrigerios ToWido");
         setResizable(false);
-        
+
+        iniciarPaneles();
+        expendedorMain = new Expendedor(4,500,panel1);
+        PrecioBebida = String.valueOf(expendedorMain.getPrecio());
+        comprador = new Comprador();        
+        comprador.crearMonedas(0, 3, panel1);
+        comprador.crearMonedas(1, 3, panel1);
+
         iniciarComponentes();
 
 
     }
     
     private void iniciarComponentes(){
-        iniciarPaneles();
         iniciarBotones();
         iniciarEtiquetas();
     }
@@ -44,9 +52,17 @@ public class Ventana extends JFrame implements ActionListener{
         panelExpendedora.setLayout(null);
         panel1.setLayout(null);
         getContentPane().add(panel1);
+
     }
     
     private void iniciarBotones(){
+
+        //Botón comprar
+        comprar = new JButton();
+        comprar.addActionListener(this);
+        ImageIcon imagenComprar = new ImageIcon("botonCompra.png");
+        comprar.setBounds(840,320,50,50);
+        comprar.setIcon(new ImageIcon(imagenComprar.getImage().getScaledInstance(comprar.getWidth(),comprar.getHeight(),Image.SCALE_SMOOTH)));
         
         //Botón cocacola
         coca = new JButton();
@@ -69,6 +85,7 @@ public class Ventana extends JFrame implements ActionListener{
         sprite.setBounds(840,200,50,50);
         sprite.setIcon(new ImageIcon(imagenSprite.getImage().getScaledInstance(sprite.getWidth(),sprite.getHeight(),Image.SCALE_SMOOTH)));
         
+        panel1.add(comprar);
         panel1.add(coca);
         panel1.add(fanta);
         panel1.add(sprite);
@@ -91,17 +108,22 @@ public class Ventana extends JFrame implements ActionListener{
         insertarMoneda.setBounds(700,300,50,70); 
         insertarMoneda.setIcon(new ImageIcon(imagenInsertarMoneda.getImage().getScaledInstance(insertarMoneda.getWidth(),insertarMoneda.getHeight(),Image.SCALE_SMOOTH)));
 
+        /*
         ImageIcon imagenLataCoca = new ImageIcon("lataCoca.png");
         lataCoca.setBounds(110,105,50,40);
         lataCoca.setIcon(new ImageIcon(imagenLataCoca.getImage().getScaledInstance(lataCoca.getWidth(),lataCoca.getHeight(),Image.SCALE_SMOOTH)));
         
+         * 
+         */
+      
+        /*
         ImageIcon imagen500 = new ImageIcon("500pesos.png");
         moneda500.setBounds(700,470,50,50);
         moneda500.setIcon(new ImageIcon(imagen500.getImage().getScaledInstance(moneda500.getWidth(),moneda500.getHeight(),Image.SCALE_SMOOTH)));
         //MOVIMIENTO DE LA MONEDA
-        Movement mv500 = new Movement(moneda500);
-            
-    
+        movimiento500 = new Movement(moneda500);
+         */
+
 
         Precio.setBounds(620,80,240, 40);
         Precio.setOpaque(true);
@@ -139,10 +161,10 @@ public class Ventana extends JFrame implements ActionListener{
 
         panel1.add(Precio);
         panel1.add(BebidaSelec);
-        panel1.add(moneda500);        
+        //panel1.add(moneda500);        
         panel1.add(insertarMoneda);
         panel1.add(color2);
-        panel1.add(lataCoca);
+        //panel1.add(lataCoca);
         panel1.add(verFanta);
         panel1.add(verCoca);
         panel1.add(verSprite);
@@ -153,19 +175,39 @@ public class Ventana extends JFrame implements ActionListener{
     //CONTROL DE LOS BOTONES
     @Override
 	public void actionPerformed(ActionEvent e) {
+
 		if(e.getSource()==coca) {
             BebidaSelec.setText("BEBIDA SELECCIONADA: COCA-COLA");
-
-
+            selectedB=0;
         }
         if(e.getSource()==fanta){
             BebidaSelec.setText("BEBIDA SELECCIONADA: FANTA");
-
+            selectedB=1;
+            
         }
         if(e.getSource()==sprite){
             BebidaSelec.setText("BEBIDA SELECCIONADA: SPRITE");
+            selectedB=2;
 
         }
+        if(e.getSource()==comprar){
+
+            switch(selectedB){
+                case 0: System.out.println("Coca");
+                        break;
+
+                case 1: System.out.println("Fanta");
+                        break;
+
+                case 2: System.out.println("Sprite");
+                        break;
+
+                default: System.out.println("Seleccione una bebida");
+                        break;
+            }
+        
+        }
+
     }
 
 }

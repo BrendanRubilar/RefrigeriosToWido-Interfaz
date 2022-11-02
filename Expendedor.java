@@ -2,7 +2,15 @@ package Tarea3;
 
 import java.util.Objects;
 
-class Expendedor{
+import java.awt.Color;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+
+class Expendedor extends JLabel{
     private Deposito fanta;
     private Deposito coca;
     private Deposito sprite;
@@ -15,7 +23,7 @@ class Expendedor{
     
     //La maquina tiene un deposito donde almacena el vuelto a entregar
     //Constructor del expendedor, se le entrega la cantidad de bebidas y el precio (Valores iguales para todos los depositos)
-    public Expendedor(int cantidad, int precio) {
+    public Expendedor(int cantidad, int precio, JPanel target) {
         
         
         this.Precio = precio ;
@@ -29,6 +37,41 @@ class Expendedor{
             sprite.addBebida(new Sprite(i+200));
             fanta.addBebida(new Fanta(i+200));
         }
+
+        inicializarBebidas(cantidad, target);
+
+    }
+
+    public void inicializarBebidas(int cantidad, JPanel target){
+
+        int X=110, Y=105;
+        
+        if(cantidad>=8) cantidad=8; //Controlar limite de bebidas por deposito
+        
+        for(int i=0;i<cantidad;i++){
+
+            JLabel lataCoca = new JLabel();
+            ImageIcon imagenLataCoca = new ImageIcon("lataCoca.png");
+            lataCoca.setBounds(X,105,50,40);
+            lataCoca.setIcon(new ImageIcon(imagenLataCoca.getImage().getScaledInstance(lataCoca.getWidth(),lataCoca.getHeight(),Image.SCALE_SMOOTH)));
+            target.add(lataCoca);
+
+            JLabel lataFanta = new JLabel();
+            ImageIcon imagenLataFanta = new ImageIcon("lataCoca.png"); //Just testing
+            lataFanta.setBounds(X,205,50,40);
+            lataFanta.setIcon(new ImageIcon(imagenLataFanta.getImage().getScaledInstance(lataFanta.getWidth(),lataFanta.getHeight(),Image.SCALE_SMOOTH)));
+            target.add(lataFanta);
+
+            JLabel lataSprite = new JLabel();
+            ImageIcon imagenLataSprite = new ImageIcon("lataCoca.png"); //testing
+            lataSprite.setBounds(X,305,50,40);
+            lataSprite.setIcon(new ImageIcon(imagenLataSprite.getImage().getScaledInstance(lataSprite.getWidth(),lataSprite.getHeight(),Image.SCALE_SMOOTH)));
+            target.add(lataSprite);
+
+            X=X+50;
+
+        }
+
     }
 
     public int getPrecio(){

@@ -13,6 +13,7 @@ public class Movement implements MouseListener,MouseMotionListener{
     private int X,Y;
 	boolean Presionada,flechaEncima;
 	Component target;
+	Moneda moneda; //testing...
 
     public Movement(Component a){
 		target = a;
@@ -54,9 +55,15 @@ public class Movement implements MouseListener,MouseMotionListener{
 		
 		if( (target.getX()>=690 && target.getX()<=760)&&(target.getY()>=290 && target.getY()<=380) ){
 			target.setVisible(false);
+			//SOLO PARA TESTEAR!
+			moneda = new Moneda500();
 			System.out.println("DESAPARECER");
 		}
 
+	}
+
+	public Moneda getMoneda(){
+		return moneda;
 	}
 
 	@Override
