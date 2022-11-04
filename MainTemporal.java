@@ -1,5 +1,3 @@
-package Tarea3;
-
 public class MainTemporal {
 
     public static void main(String[] args) {

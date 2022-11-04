@@ -1,8 +1,5 @@
-package Tarea3;
-
 import java.util.ArrayList;
-
-class Deposito {
+class Deposito{
 
     private ArrayList<Bebida> al;
 
@@ -11,7 +8,9 @@ class Deposito {
     }
 
     public void addBebida(Bebida a) {
+         
         al.add(a);
+        
     }
     
     public Bebida getBebida() {

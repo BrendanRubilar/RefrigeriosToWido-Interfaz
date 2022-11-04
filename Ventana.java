@@ -1,5 +1,3 @@
-package Tarea3;
-
 import java.awt.event.*;
 import java.awt.Color;
 import java.awt.Image;
@@ -193,14 +191,18 @@ public class Ventana extends JFrame implements ActionListener{
         if(e.getSource()==comprar){
 
             switch(selectedB){
-                case 0: System.out.println("Coca");
-                        break;
+                case 0: 
+                    System.out.println("Coca");
+                    expendedorMain.comprarBebida(null, selectedB);
+                    break;
 
-                case 1: System.out.println("Fanta");
-                        break;
+                case 1: 
+                    System.out.println("Fanta");    
+                    break;
 
-                case 2: System.out.println("Sprite");
-                        break;
+                case 2: 
+                    System.out.println("Sprite");
+                    break;
 
                 default: System.out.println("Seleccione una bebida");
                         break;

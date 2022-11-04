@@ -1,11 +1,7 @@
-package Tarea3;
-
 import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import javax.swing.JLabel;
-import javax.swing.text.StyledEditorKit.BoldAction;
 
 
 public class Movement implements MouseListener,MouseMotionListener{
@@ -13,7 +9,6 @@ public class Movement implements MouseListener,MouseMotionListener{
     private int X,Y;
 	boolean Presionada,flechaEncima;
 	Component target;
-	Moneda moneda; //testing...
 
     public Movement(Component a){
 		target = a;
@@ -56,14 +51,11 @@ public class Movement implements MouseListener,MouseMotionListener{
 		if( (target.getX()>=690 && target.getX()<=760)&&(target.getY()>=290 && target.getY()<=380) ){
 			target.setVisible(false);
 			//SOLO PARA TESTEAR!
-			moneda = new Moneda500();
-			System.out.println("DESAPARECER");
+			System.out.println("DESAPARECER"); 
+
+
 		}
 
-	}
-
-	public Moneda getMoneda(){
-		return moneda;
 	}
 
 	@Override

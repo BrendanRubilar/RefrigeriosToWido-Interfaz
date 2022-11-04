@@ -1,6 +1,7 @@
-package Tarea3;
+import javax.swing.JLabel;
 
-abstract class Moneda{
+
+abstract class Moneda extends JLabel{
     
 
     public Moneda(){

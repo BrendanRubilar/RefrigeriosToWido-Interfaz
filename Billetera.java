@@ -1,23 +1,16 @@
 import java.util.ArrayList;
 
-class DepositoMonedas {
+
+class Billetera{
 
     private ArrayList<Moneda> al;
 
-    public DepositoMonedas() {
+    public Billetera() {
         al = new ArrayList<Moneda>();
     }
 
     public void addMoneda(Moneda a) {
         al.add(a);
-    }
-
-    public Boolean listIsEmpty(){
-        if(al.size()==0){
-            return true;
-        }else{
-            return false;
-        }
 
     }
     
@@ -28,4 +21,13 @@ class DepositoMonedas {
             return null;
         }
     }
+
+    public Boolean hayMonedas(){
+        if(al.size()!=0 ){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }

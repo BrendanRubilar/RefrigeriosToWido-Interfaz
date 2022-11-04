@@ -1,6 +1,22 @@
-package Tarea3;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import java.awt.Image;
+
 
 class Moneda500 extends Moneda{
+
+   public Moneda500(JPanel target){
+
+      JLabel moneda500 = new JLabel();
+      ImageIcon imagen500 = new ImageIcon("500pesos.png");
+      moneda500.setBounds(700,470,50,50);
+      moneda500.setIcon(new ImageIcon(imagen500.getImage().getScaledInstance(moneda500.getWidth(),moneda500.getHeight(),Image.SCALE_SMOOTH)));
+      //MOVIMIENTO DE LA MONEDA
+      Movement movimiento500 = new Movement(moneda500);
+      target.add(moneda500);
+
+   }
 
     @Override
      public int getValues(){
