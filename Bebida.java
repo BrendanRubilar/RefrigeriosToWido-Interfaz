@@ -16,7 +16,7 @@ class Sprite extends Bebida {
     public Sprite(int X,JPanel target){
 
         lataSprite = new JLabel();
-        ImageIcon imagenLataSprite = new ImageIcon("lataCoca.png"); //testing
+        ImageIcon imagenLataSprite = new ImageIcon("lataSprite.png"); //testing
         lataSprite.setBounds(X,305,50,40);
         lataSprite.setIcon(new ImageIcon(imagenLataSprite.getImage().getScaledInstance(lataSprite.getWidth(),lataSprite.getHeight(),Image.SCALE_SMOOTH)));
         target.add(lataSprite);
@@ -57,7 +57,7 @@ class Fanta extends Bebida {
     public Fanta(int X, JPanel target){
 
         lataFanta = new JLabel();
-        ImageIcon imagenLataFanta = new ImageIcon("lataCoca.png"); //Just testing
+        ImageIcon imagenLataFanta = new ImageIcon("lataFanta.png"); //Just testing
         lataFanta.setBounds(X,205,50,40);
         lataFanta.setIcon(new ImageIcon(imagenLataFanta.getImage().getScaledInstance(lataFanta.getWidth(),lataFanta.getHeight(),Image.SCALE_SMOOTH)));
         target.add(lataFanta);

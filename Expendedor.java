@@ -87,12 +87,12 @@ class Expendedor extends JLabel{
                         System.out.println("Ha comprado una Coca-Cola");
                         break;
 
-                case 1: moverBebida(sprite.getBebida());
-                        System.out.println("Ha comprado una Sprite");
+                case 1: moverBebida(fanta.getBebida());
+                        System.out.println("Ha comprado una Fanta");
                         break;
 
-                case 2: moverBebida(fanta.getBebida());
-                        System.out.println("Ha comprado una Fanta");
+                case 2: moverBebida(sprite.getBebida());
+                        System.out.println("Ha comprado una Sprite");
                         break;
             }
     }

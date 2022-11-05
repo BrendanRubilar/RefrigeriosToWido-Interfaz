@@ -125,13 +125,13 @@ public class Ventana extends JFrame implements ActionListener{
 
         Precio.setBounds(620,80,240, 40);
         Precio.setOpaque(true);
-        Precio.setBackground(Color.red);
-        Precio.setText("PRECIO BEBIDA: $"+PrecioBebida);
+        Precio.setBackground(Color.white);
+        Precio.setText(" PRECIO BEBIDA: $"+PrecioBebida);
 
         BebidaSelec.setBounds(620,30,240,40);
         BebidaSelec.setOpaque(true);
-        BebidaSelec.setBackground(Color.red);
-        BebidaSelec.setText("BEBIDA SELECCIONADA:        ");
+        BebidaSelec.setBackground(Color.white);
+        BebidaSelec.setText(" BEBIDA SELECCIONADA:        ");
 
         color1.setBounds(0,0,600,700);
         color1.setOpaque(true);
@@ -175,16 +175,16 @@ public class Ventana extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 
 		if(e.getSource()==coca) {
-            BebidaSelec.setText("BEBIDA SELECCIONADA: COCA-COLA");
+            BebidaSelec.setText(" BEBIDA SELECCIONADA: COCA-COLA");
             selectedB=0;
         }
         if(e.getSource()==fanta){
-            BebidaSelec.setText("BEBIDA SELECCIONADA: FANTA");
+            BebidaSelec.setText(" BEBIDA SELECCIONADA: FANTA");
             selectedB=1;
             
         }
         if(e.getSource()==sprite){
-            BebidaSelec.setText("BEBIDA SELECCIONADA: SPRITE");
+            BebidaSelec.setText(" BEBIDA SELECCIONADA: SPRITE");
             selectedB=2;
 
         }
@@ -192,20 +192,20 @@ public class Ventana extends JFrame implements ActionListener{
 
             switch(selectedB){
                 case 0:
-                    System.out.println("Coca");
+                    System.out.println("Recibiendo Coca");
                     expendedorMain.comprarBebida(selectedB);
                     expendedorMain.recibirMoneda(null);
                     break;
 
                 case 1: 
-                    System.out.println("Fanta");    
+                    System.out.println("Recibiendo Fanta");    
                     expendedorMain.comprarBebida(selectedB);
                     expendedorMain.recibirMoneda(null);
 
                     break;
 
                 case 2: 
-                    System.out.println("Sprite");
+                    System.out.println("Recibiendo Sprite");
                     expendedorMain.comprarBebida(selectedB);
                     expendedorMain.recibirMoneda(null);
 
