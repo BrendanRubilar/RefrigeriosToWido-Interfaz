@@ -9,8 +9,14 @@ public class Movement implements MouseListener,MouseMotionListener{
     private int X,Y;
 	boolean Presionada,flechaEncima;
 	Component target;
+	Moneda moneda;
+	Billetera billetera;
+	Expendedor expendedor;
 
-    public Movement(Component a){
+    public Movement(Component a, Moneda moneda, Billetera billetera, Expendedor expendedor){
+		this.expendedor = expendedor;
+		this.moneda = moneda;
+		this.billetera = billetera;
 		target = a;
 		a.addMouseListener(this);
 		a.addMouseMotionListener(this);
@@ -49,8 +55,25 @@ public class Movement implements MouseListener,MouseMotionListener{
 		Presionada = false;
 		
 		if( (target.getX()>=690 && target.getX()<=760)&&(target.getY()>=290 && target.getY()<=380) ){
+			
+			switch(moneda.getValues()){
+
+				case 100:
+				expendedor.recibirMoneda(billetera.getMoneda(0));
+				break;
+
+				case 500:
+				expendedor.recibirMoneda(billetera.getMoneda(1));
+				break;
+
+				case 1000:
+				expendedor.recibirMoneda(billetera.getMoneda(2));
+				break;
+			}
+
 			target.setVisible(false);
 			//SOLO PARA TESTEAR!
+			System.out.println("Valor moneda: " + moneda.getValues());
 			System.out.println("DESAPARECER"); 
 
 

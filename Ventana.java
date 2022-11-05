@@ -31,8 +31,8 @@ public class Ventana extends JFrame implements ActionListener{
         expendedorMain = new Expendedor(4,500,panel1);
         PrecioBebida = String.valueOf(expendedorMain.getPrecio());
         comprador = new Comprador();        
-        comprador.crearMonedas(0, 3, panel1);
-        comprador.crearMonedas(1, 3, panel1);
+        comprador.crearMonedas(0, 3, panel1,expendedorMain);
+        comprador.crearMonedas(1, 3, panel1,expendedorMain);
 
         iniciarComponentes();
 
@@ -191,21 +191,24 @@ public class Ventana extends JFrame implements ActionListener{
         if(e.getSource()==comprar){
 
             switch(selectedB){
-                case 0: 
+                case 0:
                     System.out.println("Coca");
-                    expendedorMain.comprarBebida(null, selectedB);
+                    expendedorMain.comprarBebida(selectedB);
                     break;
 
                 case 1: 
                     System.out.println("Fanta");    
+                    expendedorMain.comprarBebida(selectedB);
                     break;
 
                 case 2: 
                     System.out.println("Sprite");
+                    expendedorMain.comprarBebida(selectedB);
                     break;
 
-                default: System.out.println("Seleccione una bebida");
-                        break;
+                default: 
+                    System.out.println("Seleccione una bebida");
+                    break;
             }
         
         }

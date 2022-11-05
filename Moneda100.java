@@ -10,13 +10,13 @@ class Moneda100 extends Moneda{
 
    }
 
-   public Moneda100(JPanel target){
+   public Moneda100(JPanel target, Billetera billetera, Expendedor expendedor){
 
       JLabel moneda100 = new JLabel();
       ImageIcon imagen100 = new ImageIcon("100pesos.png");
       moneda100.setBounds(785,470,50,50);
       moneda100.setIcon(new ImageIcon(imagen100.getImage().getScaledInstance(moneda100.getWidth(),moneda100.getHeight(),Image.SCALE_SMOOTH)));
-      Movement movimiento100 = new Movement(moneda100);
+      Movement movimiento100 = new Movement(moneda100, this, billetera, expendedor);
       target.add(moneda100);
 
    }

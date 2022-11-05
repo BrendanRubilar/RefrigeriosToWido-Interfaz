@@ -17,18 +17,18 @@ public class Comprador extends JLabel{
     }
     
     //Este metodo creará monedas y las muestra en pantalla...
-    public void crearMonedas(int tipo, int cantidad, JPanel target){
+    public void crearMonedas(int tipo, int cantidad, JPanel target, Expendedor expendedor){
 
         if(tipo==0){
 
             for(int i=0;i<cantidad;i++){
-                billetera.addMoneda(new Moneda100(target));
+                billetera.addMoneda(new Moneda100(target, billetera, expendedor),0);
             }
 
         }else if(tipo==1){
 
             for(int i=0;i<cantidad;i++){
-                billetera.addMoneda(new Moneda500(target));
+                billetera.addMoneda(new Moneda500(target, billetera, expendedor),1);
             }
         }else if(tipo==2){
 

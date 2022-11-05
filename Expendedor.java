@@ -10,7 +10,8 @@ class Expendedor extends JLabel{
     private Deposito sprite;
     private DepositoMonedas vuelto;
     private int Precio;
-    
+    private Moneda monedaDepositada;
+
     public Expendedor(){
 
     }
@@ -87,10 +88,14 @@ class Expendedor extends JLabel{
             }
     }
     
+    public void recibirMoneda(Moneda moneda){
+        monedaDepositada = moneda;
+    }
+
     //Este se invoca desde el constructor de Comprador
-    public void comprarBebida(Moneda moneda, int bebidaSeleccionada){
+    public void comprarBebida(int bebidaSeleccionada){
         //Lo primero que se debe hacer es verificar si la moneda es nula, de ser así no se sigue ejecutando el codigo
-        if( Objects.isNull(moneda)){
+        if( Objects.isNull(monedaDepositada)){
             try{
                 throw new Error3Exception("Moneda es Nula");
             }catch(Error3Exception msg3){
@@ -107,16 +112,15 @@ class Expendedor extends JLabel{
              case 2: booleanAux= fanta.hayBebidas();
             }
 
-        
             //Este codigo está encargado de verificar todos los casos y realizar la compra de la bebida
-            if(moneda.getValues() == this.Precio && booleanAux){
-              sacarBebida(bebidaSeleccionada);
+            if(monedaDepositada.getValues() == this.Precio && booleanAux){
+                sacarBebida(bebidaSeleccionada);
 
-            }else if(moneda.getValues() >= this.Precio){
+            }else if(monedaDepositada.getValues() >= this.Precio){
 
              if(booleanAux){
-                   sacarBebida(bebidaSeleccionada);
-                    calcularVuelto(moneda.getValues());
+                sacarBebida(bebidaSeleccionada);
+                calcularVuelto(monedaDepositada.getValues());
                 }else{
                   try{
                        switch(bebidaSeleccionada){
@@ -135,7 +139,7 @@ class Expendedor extends JLabel{
                 }
             }else{ 
                 try{
-                    if(moneda.getValues() < this.Precio){
+                    if(monedaDepositada.getValues() < this.Precio){
                         throw new Error1Exception("No hay saldo suficiente");
                     }
                 }catch(Error1Exception e){
