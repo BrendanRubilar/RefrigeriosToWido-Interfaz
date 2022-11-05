@@ -28,7 +28,7 @@ public class Ventana extends JFrame implements ActionListener{
         setResizable(false);
 
         iniciarPaneles();
-        expendedorMain = new Expendedor(4,500,panel1);
+        expendedorMain = new Expendedor(2,500,panel1);
         PrecioBebida = String.valueOf(expendedorMain.getPrecio());
         comprador = new Comprador();        
         comprador.crearMonedas(0, 3, panel1,expendedorMain);
@@ -99,6 +99,7 @@ public class Ventana extends JFrame implements ActionListener{
         JLabel verFanta = new JLabel();
         JLabel verSprite = new JLabel();
         JLabel salidaBebida = new JLabel();
+        JLabel salidaMonedas = new JLabel();
         JLabel lataCoca = new JLabel();
         JLabel moneda500 = new JLabel();
         
@@ -157,6 +158,10 @@ public class Ventana extends JFrame implements ActionListener{
         salidaBebida.setOpaque(true);
         salidaBebida.setBackground(Color.black);
 
+        salidaMonedas.setBounds(420,500,70,70);
+        salidaMonedas.setOpaque(true);
+        salidaMonedas.setBackground(Color.black);
+
         panel1.add(Precio);
         panel1.add(BebidaSelec);
         //panel1.add(moneda500);        
@@ -166,6 +171,7 @@ public class Ventana extends JFrame implements ActionListener{
         panel1.add(verFanta);
         panel1.add(verCoca);
         panel1.add(verSprite);
+        panel1.add(salidaMonedas);
         panel1.add(salidaBebida);
         panel1.add(color1);
     }
