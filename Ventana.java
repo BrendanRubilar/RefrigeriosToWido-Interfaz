@@ -194,16 +194,21 @@ public class Ventana extends JFrame implements ActionListener{
                 case 0:
                     System.out.println("Coca");
                     expendedorMain.comprarBebida(selectedB);
+                    expendedorMain.recibirMoneda(null);
                     break;
 
                 case 1: 
                     System.out.println("Fanta");    
                     expendedorMain.comprarBebida(selectedB);
+                    expendedorMain.recibirMoneda(null);
+
                     break;
 
                 case 2: 
                     System.out.println("Sprite");
                     expendedorMain.comprarBebida(selectedB);
+                    expendedorMain.recibirMoneda(null);
+
                     break;
 
                 default: 

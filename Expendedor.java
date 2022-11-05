@@ -12,6 +12,7 @@ class Expendedor extends JLabel{
     private int Precio;
     private Moneda monedaDepositada;
 
+
     public Expendedor(){
 
     }
@@ -72,17 +73,25 @@ class Expendedor extends JLabel{
         vuelto.getMoneda();
     }
 
+    public void moverBebida(Bebida bebida){
+
+
+        Thread animar = new Thread(new AnimationBebida(bebida));
+        animar.start();
+
+    }
+
     public void sacarBebida(int bebidaSeleccionada){
-                    switch(bebidaSeleccionada){
-                case 0: coca.getBebida();
+            switch(bebidaSeleccionada){
+                case 0: moverBebida(coca.getBebida());
                         System.out.println("Ha comprado una Coca-Cola");
                         break;
 
-                case 1: sprite.getBebida();
+                case 1: moverBebida(sprite.getBebida());
                         System.out.println("Ha comprado una Sprite");
                         break;
 
-                case 2: fanta.getBebida();
+                case 2: moverBebida(fanta.getBebida());
                         System.out.println("Ha comprado una Fanta");
                         break;
             }
