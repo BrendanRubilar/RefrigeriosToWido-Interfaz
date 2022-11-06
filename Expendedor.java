@@ -31,9 +31,9 @@ class Expendedor extends JLabel{
         vuelto = new DepositoMonedas();
 
         for (int i = 0; i < cantidad; i++) {
-            coca.addBebida(new CocaCola(X,target));
-            sprite.addBebida(new Sprite(X,target));
-            fanta.addBebida(new Fanta(X,target));
+            coca.addBebida(new CocaCola(X,target,1000+i));
+            sprite.addBebida(new Sprite(X,target,2000+i));
+            fanta.addBebida(new Fanta(X,target,3000+i));
             X=X+50;
         }
 
@@ -124,11 +124,14 @@ class Expendedor extends JLabel{
             //Este codigo está encargado de verificar todos los casos y realizar la compra de la bebida
             if(monedaDepositada.getValues() == this.Precio && booleanAux){
                 sacarBebida(bebidaSeleccionada);
+                this.recibirMoneda(null);
+
 
             }else if(monedaDepositada.getValues() >= this.Precio){
 
              if(booleanAux){
                 sacarBebida(bebidaSeleccionada);
+                this.recibirMoneda(null);
                 calcularVuelto(monedaDepositada.getValues());
                 }else{
                   try{
