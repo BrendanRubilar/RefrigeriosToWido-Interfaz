@@ -36,9 +36,6 @@ class Expendedor extends JLabel{
             fanta.addBebida(new Fanta(X,target,3000+i));
             X=X+50;
         }
-
-
-
     }
 
 
@@ -50,8 +47,6 @@ class Expendedor extends JLabel{
     public void calcularVuelto(int valorDeLaMoneda){
         
         int cantidadDeMonedadsAdevolver = (valorDeLaMoneda-this.Precio)/100;
-        
-
         //Este for entregara monedas de 100 en 100 hasta vaciar el deposito de Vuelto
         for (int i = 0; i < cantidadDeMonedadsAdevolver; i++){
             vuelto.addMoneda(new Moneda100());
@@ -74,11 +69,8 @@ class Expendedor extends JLabel{
     }
 
     public void moverBebida(Bebida bebida){
-
-
         Thread animar = new Thread(new AnimationBebida(bebida));
         animar.start();
-
     }
 
     public void sacarBebida(int bebidaSeleccionada){
@@ -116,9 +108,9 @@ class Expendedor extends JLabel{
             switch(bebidaSeleccionada){
               case 0: booleanAux= coca.hayBebidas();
                         break;
-             case 1: booleanAux= sprite.hayBebidas();
+             case 1: booleanAux= fanta.hayBebidas();
                         break;
-             case 2: booleanAux= fanta.hayBebidas();
+             case 2: booleanAux= sprite.hayBebidas();
             }
 
             //Este codigo está encargado de verificar todos los casos y realizar la compra de la bebida
@@ -129,19 +121,19 @@ class Expendedor extends JLabel{
 
             }else if(monedaDepositada.getValues() >= this.Precio){
 
-             if(booleanAux){
-                sacarBebida(bebidaSeleccionada);
-                this.recibirMoneda(null);
-                calcularVuelto(monedaDepositada.getValues());
+                if(booleanAux){
+                    sacarBebida(bebidaSeleccionada);
+                    this.recibirMoneda(null);
+                    calcularVuelto(monedaDepositada.getValues());
                 }else{
                   try{
                        switch(bebidaSeleccionada){
                         case 0:
                             throw new Error3Exception("No queda CocaCola");
                         case 1:
-                            throw new Error3Exception("No queda Sprite");
-                        case 2:
                             throw new Error3Exception("No queda Fanta");
+                        case 2:
+                            throw new Error3Exception("No queda Sprite");
                         default:
                             throw new Error3Exception("Seleccione una bebida valida");
                     }

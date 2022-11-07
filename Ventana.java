@@ -28,14 +28,14 @@ public class Ventana extends JFrame implements ActionListener{
         setResizable(false);
 
         iniciarPaneles();
-        expendedorMain = new Expendedor(2,500,panel1);
+        expendedorMain = new Expendedor(2,1000,panel1);
         PrecioBebida = String.valueOf(expendedorMain.getPrecio());
         comprador = new Comprador();        
         comprador.crearMonedas(0, 3, panel1,expendedorMain);
         comprador.crearMonedas(1, 3, panel1,expendedorMain);
+        comprador.crearMonedas(2,3,panel1,expendedorMain);
 
         iniciarComponentes();
-
 
     }
     
@@ -99,10 +99,7 @@ public class Ventana extends JFrame implements ActionListener{
         JLabel verFanta = new JLabel();
         JLabel verSprite = new JLabel();
         JLabel salidaBebida = new JLabel();
-        JLabel salidaMonedas = new JLabel();
-        JLabel lataCoca = new JLabel();
-        JLabel moneda500 = new JLabel();
-        
+        JLabel salidaMonedas = new JLabel();        
         ImageIcon imagenInsertarMoneda = new ImageIcon("insertarMoneda.jpeg");
         insertarMoneda.setBounds(700,300,50,70); 
         insertarMoneda.setIcon(new ImageIcon(imagenInsertarMoneda.getImage().getScaledInstance(insertarMoneda.getWidth(),insertarMoneda.getHeight(),Image.SCALE_SMOOTH)));
@@ -163,11 +160,9 @@ public class Ventana extends JFrame implements ActionListener{
         salidaMonedas.setBackground(Color.black);
 
         panel1.add(Precio);
-        panel1.add(BebidaSelec);
-        //panel1.add(moneda500);        
+        panel1.add(BebidaSelec);        
         panel1.add(insertarMoneda);
         panel1.add(color2);
-        //panel1.add(lataCoca);
         panel1.add(verFanta);
         panel1.add(verCoca);
         panel1.add(verSprite);

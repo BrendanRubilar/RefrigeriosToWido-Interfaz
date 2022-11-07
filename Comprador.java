@@ -5,7 +5,7 @@ import javax.swing.JPanel;
 public class Comprador extends JLabel{
 
     Billetera billetera;
-    JLabel moneda100,moneda500;
+    JLabel moneda100,moneda500,moneda1000;
      
     //EL "COMPRADOR" genera monedas para comprar en la maquina...
 
@@ -13,7 +13,6 @@ public class Comprador extends JLabel{
     public Comprador(){
         billetera = new Billetera();
         
-
     }
     
     //Este metodo creará monedas y las muestra en pantalla...
@@ -33,12 +32,8 @@ public class Comprador extends JLabel{
         }else if(tipo==2){
 
             for(int i=0;i<cantidad;i++){
-
-
-
+                billetera.addMoneda(new Moneda1000(target, billetera, expendedor),2);
             }
-
         }
-
     }
 }

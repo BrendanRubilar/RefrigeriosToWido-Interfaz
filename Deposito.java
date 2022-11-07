@@ -7,10 +7,8 @@ class Deposito{
         al = new ArrayList<Bebida>();
     }
 
-    public void addBebida(Bebida a) {
-         
-        al.add(a);
-        
+    public void addBebida(Bebida a) {     
+        al.add(a);    
     }
     
     public Bebida getBebida() {
