@@ -12,7 +12,7 @@ public class Ventana extends JFrame implements ActionListener{
     public JPanel panel1;
     public JPanel panelExpendedora;
     JButton coca, fanta, sprite, comprar, botonVuelto;
-    JLabel BebidaSelec;
+    JLabel BebidaSelec, monedaV;
     String PrecioBebida;
     Expendedor expendedorMain; //Auxiliar...
     Movement movimiento500; //testing...
@@ -109,7 +109,6 @@ public class Ventana extends JFrame implements ActionListener{
         JLabel verSprite = new JLabel();
         JLabel salidaBebida = new JLabel();
         JLabel salidaMonedas = new JLabel();
-        //JLabel tapa = new JLabel();
 
         ImageIcon imagenInsertarMoneda = new ImageIcon("insertarMoneda.jpeg");
         insertarMoneda.setBounds(700,300,50,70); 
@@ -150,11 +149,6 @@ public class Ventana extends JFrame implements ActionListener{
         salidaMonedas.setBounds(420,485,70,70);
         salidaMonedas.setIcon(new ImageIcon(cajaB.getImage().getScaledInstance(salidaMonedas.getWidth(),salidaMonedas.getHeight(),Image.SCALE_SMOOTH)));
 
-        //tapa.setBounds(100,400,70,200);
-        //tapa.setOpaque(true);
-        //tapa.setBackground(Color.red);
-
-        //panel1.add(tapa);
         panel1.add(Precio);
         panel1.add(BebidaSelec);        
         panel1.add(insertarMoneda);
@@ -186,6 +180,13 @@ public class Ventana extends JFrame implements ActionListener{
 
         }
         if(e.getSource()==botonVuelto){
+    //Aplicar mismo algoritmo de las bebidas, aparecer en deposito y al hacer click retirarla.
+            //monedaV = new JLabel();
+            //ImageIcon vuelto100 = new ImageIcon("100pesos.png");
+            //monedaV.setBounds(420,485,70,70);
+            //monedaV.setIcon(new ImageIcon(vuelto100.getImage().getScaledInstance(monedaV.getWidth(),monedaV.getHeight(),Image.SCALE_SMOOTH)));
+            //panel1.add(monedaV);
+            expendedorMain.entregarVuelto();           
             System.out.println("Estamos trabajando para entregar vuelto, vuelva más tarde.");
         }
         if(e.getSource()==comprar){
