@@ -30,12 +30,13 @@ public class Ventana extends JFrame implements ActionListener{
         iniciarPaneles();
         expendedorMain = new Expendedor(2,1000,panel1);
         PrecioBebida = String.valueOf(expendedorMain.getPrecio());
-        comprador = new Comprador();        
+        comprador = new Comprador(); 
+              
         comprador.crearMonedas(0, 3, panel1,expendedorMain);
         comprador.crearMonedas(1, 3, panel1,expendedorMain);
         comprador.crearMonedas(2,3,panel1,expendedorMain);
 
-        iniciarComponentes();
+        iniciarComponentes(); 
 
     }
     
@@ -100,7 +101,7 @@ public class Ventana extends JFrame implements ActionListener{
         JLabel verSprite = new JLabel();
         JLabel salidaBebida = new JLabel();
         JLabel salidaMonedas = new JLabel();
-        JLabel tapa = new JLabel();
+        //JLabel tapa = new JLabel();
 
         ImageIcon imagenInsertarMoneda = new ImageIcon("insertarMoneda.jpeg");
         insertarMoneda.setBounds(700,300,50,70); 
@@ -116,27 +117,27 @@ public class Ventana extends JFrame implements ActionListener{
         BebidaSelec.setBackground(Color.white);
         BebidaSelec.setText(" BEBIDA SELECCIONADA:        ");
 
+        ImageIcon cajaExpendedor = new ImageIcon("cajita.jpg");
         color1.setBounds(0,0,600,700);
-        color1.setOpaque(true);
-        color1.setBackground(Color.gray);
+        color1.setIcon(new ImageIcon(cajaExpendedor.getImage().getScaledInstance(color1.getWidth(),color1.getHeight(),Image.SCALE_SMOOTH)));
         
+        ImageIcon cajaExpendedor2 = new ImageIcon("cajita2.jpg");
         color2.setBounds(600,0,400,700);
-        color2.setOpaque(true);
-        color2.setBackground(Color.black);
+        color2.setIcon(new ImageIcon(cajaExpendedor2.getImage().getScaledInstance(color2.getWidth(),color2.getHeight(),Image.SCALE_SMOOTH)));
         
         verCoca.setBounds(100,100,400,50);
         verCoca.setOpaque(true);
-        verCoca.setBackground(Color.blue);
+        verCoca.setBackground(Color.gray);
         
         verFanta.setBounds(100,200,400,50);
         verFanta.setOpaque(true);
-        verFanta.setBackground(Color.blue);
+        verFanta.setBackground(Color.gray);
         
         verSprite.setBounds(100,300,400,50);
         verSprite.setOpaque(true);
-        verSprite.setBackground(Color.blue);
+        verSprite.setBackground(Color.gray);
         
-        salidaBebida.setBounds(200,500,200,70);
+        salidaBebida.setBounds(100,500,300,70);
         salidaBebida.setOpaque(true);
         salidaBebida.setBackground(Color.black);
 
@@ -144,6 +145,11 @@ public class Ventana extends JFrame implements ActionListener{
         salidaMonedas.setOpaque(true);
         salidaMonedas.setBackground(Color.black);
 
+        //tapa.setBounds(100,400,70,200);
+        //tapa.setOpaque(true);
+        //tapa.setBackground(Color.red);
+
+        //panel1.add(tapa);
         panel1.add(Precio);
         panel1.add(BebidaSelec);        
         panel1.add(insertarMoneda);

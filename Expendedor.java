@@ -38,7 +38,6 @@ class Expendedor extends JLabel{
         }
     }
 
-
     public int getPrecio(){
         return this.Precio;
     }
