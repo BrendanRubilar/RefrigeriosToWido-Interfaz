@@ -133,25 +133,22 @@ public class Ventana extends JFrame implements ActionListener{
         color2.setBounds(600,0,400,700);
         color2.setIcon(new ImageIcon(cajaExpendedor2.getImage().getScaledInstance(color2.getWidth(),color2.getHeight(),Image.SCALE_SMOOTH)));
         
-        verCoca.setBounds(100,100,400,50);
-        verCoca.setOpaque(true);
-        verCoca.setBackground(Color.gray);
+        ImageIcon cajaB = new ImageIcon("cajaBebidas.jpg");
+
+        verCoca.setBounds(100,95,400,55);
+        verCoca.setIcon(new ImageIcon(cajaB.getImage().getScaledInstance(verCoca.getWidth(),verCoca.getHeight(),Image.SCALE_SMOOTH)));
         
-        verFanta.setBounds(100,200,400,50);
-        verFanta.setOpaque(true);
-        verFanta.setBackground(Color.gray);
+        verFanta.setBounds(100,195,400,55);
+        verFanta.setIcon(new ImageIcon(cajaB.getImage().getScaledInstance(verFanta.getWidth(),verFanta.getHeight(),Image.SCALE_SMOOTH)));
         
-        verSprite.setBounds(100,300,400,50);
-        verSprite.setOpaque(true);
-        verSprite.setBackground(Color.gray);
+        verSprite.setBounds(100,295,400,55);
+        verSprite.setIcon(new ImageIcon(cajaB.getImage().getScaledInstance(verSprite.getWidth(),verSprite.getHeight(),Image.SCALE_SMOOTH)));
         
         salidaBebida.setBounds(100,485,300,70);
-        salidaBebida.setOpaque(true);
-        salidaBebida.setBackground(Color.black);
+        salidaBebida.setIcon(new ImageIcon(cajaB.getImage().getScaledInstance(salidaBebida.getWidth(),salidaBebida.getHeight(),Image.SCALE_SMOOTH)));
 
         salidaMonedas.setBounds(420,485,70,70);
-        salidaMonedas.setOpaque(true);
-        salidaMonedas.setBackground(Color.black);
+        salidaMonedas.setIcon(new ImageIcon(cajaB.getImage().getScaledInstance(salidaMonedas.getWidth(),salidaMonedas.getHeight(),Image.SCALE_SMOOTH)));
 
         //tapa.setBounds(100,400,70,200);
         //tapa.setOpaque(true);
