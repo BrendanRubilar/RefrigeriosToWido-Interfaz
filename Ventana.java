@@ -11,7 +11,7 @@ public class Ventana extends JFrame implements ActionListener{
 
     public JPanel panel1;
     public JPanel panelExpendedora;
-    JButton coca,fanta,sprite, comprar;
+    JButton coca, fanta, sprite, comprar, botonVuelto;
     JLabel BebidaSelec;
     String PrecioBebida;
     Expendedor expendedorMain; //Auxiliar...
@@ -60,9 +60,16 @@ public class Ventana extends JFrame implements ActionListener{
         comprar = new JButton();
         comprar.addActionListener(this);
         ImageIcon imagenComprar = new ImageIcon("botonCompra.png");
-        comprar.setBounds(840,320,50,50);
+        comprar.setBounds(800,320,50,50);
         comprar.setIcon(new ImageIcon(imagenComprar.getImage().getScaledInstance(comprar.getWidth(),comprar.getHeight(),Image.SCALE_SMOOTH)));
-        
+
+        //Botón vuelto
+        botonVuelto = new JButton();
+        botonVuelto.addActionListener(this);
+        ImageIcon imagenVuelto = new ImageIcon("Vuelto.jpeg");
+        botonVuelto.setBounds(890,320,50,50);
+        botonVuelto.setIcon(new ImageIcon(imagenVuelto.getImage().getScaledInstance(botonVuelto.getWidth(),botonVuelto.getHeight(),Image.SCALE_SMOOTH)));
+
         //Botón cocacola
         coca = new JButton();
         coca.addActionListener(this);
@@ -84,6 +91,7 @@ public class Ventana extends JFrame implements ActionListener{
         sprite.setBounds(840,200,50,50);
         sprite.setIcon(new ImageIcon(imagenSprite.getImage().getScaledInstance(sprite.getWidth(),sprite.getHeight(),Image.SCALE_SMOOTH)));
         
+        panel1.add(botonVuelto);
         panel1.add(comprar);
         panel1.add(coca);
         panel1.add(fanta);
@@ -179,6 +187,9 @@ public class Ventana extends JFrame implements ActionListener{
             BebidaSelec.setText(" BEBIDA SELECCIONADA: SPRITE");
             selectedB=2;
 
+        }
+        if(e.getSource()==botonVuelto){
+            System.out.println("Estamos trabajando para entregar vuelto, vuelva más tarde.");
         }
         if(e.getSource()==comprar){
 
