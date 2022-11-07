@@ -32,8 +32,8 @@ class Expendedor extends JLabel{
 
         for (int i = 0; i < cantidad; i++) {
             coca.addBebida(new CocaCola(X,target,1000+i));
-            sprite.addBebida(new Sprite(X,target,2000+i));
             fanta.addBebida(new Fanta(X,target,3000+i));
+            sprite.addBebida(new Sprite(X,target,2000+i));
             X=X+50;
         }
     }

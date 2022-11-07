@@ -99,32 +99,17 @@ public class Ventana extends JFrame implements ActionListener{
         JLabel verFanta = new JLabel();
         JLabel verSprite = new JLabel();
         JLabel salidaBebida = new JLabel();
-        JLabel salidaMonedas = new JLabel();        
+        JLabel salidaMonedas = new JLabel();
+        JLabel tapa = new JLabel();
+
         ImageIcon imagenInsertarMoneda = new ImageIcon("insertarMoneda.jpeg");
         insertarMoneda.setBounds(700,300,50,70); 
         insertarMoneda.setIcon(new ImageIcon(imagenInsertarMoneda.getImage().getScaledInstance(insertarMoneda.getWidth(),insertarMoneda.getHeight(),Image.SCALE_SMOOTH)));
 
-        /*
-        ImageIcon imagenLataCoca = new ImageIcon("lataCoca.png");
-        lataCoca.setBounds(110,105,50,40);
-        lataCoca.setIcon(new ImageIcon(imagenLataCoca.getImage().getScaledInstance(lataCoca.getWidth(),lataCoca.getHeight(),Image.SCALE_SMOOTH)));
-        
-         * 
-         */
-      
-        /*
-        ImageIcon imagen500 = new ImageIcon("500pesos.png");
-        moneda500.setBounds(700,470,50,50);
-        moneda500.setIcon(new ImageIcon(imagen500.getImage().getScaledInstance(moneda500.getWidth(),moneda500.getHeight(),Image.SCALE_SMOOTH)));
-        //MOVIMIENTO DE LA MONEDA
-        movimiento500 = new Movement(moneda500);
-         */
-
-
         Precio.setBounds(620,80,240, 40);
         Precio.setOpaque(true);
         Precio.setBackground(Color.white);
-        Precio.setText(" PRECIO BEBIDA: $"+PrecioBebida);
+        Precio.setText(" PRECIO BEBIDA: $"+ PrecioBebida);
 
         BebidaSelec.setBounds(620,30,240,40);
         BebidaSelec.setOpaque(true);
@@ -163,8 +148,8 @@ public class Ventana extends JFrame implements ActionListener{
         panel1.add(BebidaSelec);        
         panel1.add(insertarMoneda);
         panel1.add(color2);
-        panel1.add(verFanta);
         panel1.add(verCoca);
+        panel1.add(verFanta);
         panel1.add(verSprite);
         panel1.add(salidaMonedas);
         panel1.add(salidaBebida);

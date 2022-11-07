@@ -9,6 +9,25 @@ abstract class Bebida extends JLabel{
     
 }
 
+class Fanta extends Bebida {
+    int serie;
+    JLabel lataFanta;
+    public Fanta(int X, JPanel target,int serie){
+        this.serie=serie;
+        lataFanta = new JLabel();
+        ImageIcon imagenLataFanta = new ImageIcon("lataFanta.png");
+        lataFanta.setBounds(X,205,50,40);
+        lataFanta.setIcon(new ImageIcon(imagenLataFanta.getImage().getScaledInstance(lataFanta.getWidth(),lataFanta.getHeight(),Image.SCALE_SMOOTH)));
+        target.add(lataFanta);
+        EliminarBebida eliminar = new EliminarBebida(lataFanta,serie);
+    }
+
+    @Override
+    public JLabel getLabel(){
+        return lataFanta;
+    }
+}
+
 class Sprite extends Bebida{
     int serie;
     JLabel lataSprite;
@@ -50,22 +69,5 @@ class CocaCola extends Bebida {
     }
 }
 
-class Fanta extends Bebida {
-    int serie;
-    JLabel lataFanta;
-    public Fanta(int X, JPanel target,int serie){
-        this.serie=serie;
-        lataFanta = new JLabel();
-        ImageIcon imagenLataFanta = new ImageIcon("lataFanta.png");
-        lataFanta.setBounds(X,205,50,40);
-        lataFanta.setIcon(new ImageIcon(imagenLataFanta.getImage().getScaledInstance(lataFanta.getWidth(),lataFanta.getHeight(),Image.SCALE_SMOOTH)));
-        target.add(lataFanta);
-        EliminarBebida eliminar = new EliminarBebida(lataFanta,serie);
-    }
 
-    @Override
-    public JLabel getLabel(){
-        return lataFanta;
-    }
-}
 
