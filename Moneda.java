@@ -14,5 +14,7 @@ abstract class Moneda extends JLabel{
 
     public abstract String toString();
 
+    public abstract JLabel getLabel();
+
 
 }

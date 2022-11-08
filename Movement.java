@@ -2,6 +2,8 @@ import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import javax.swing.ImageIcon;
+import java.awt.Image;
 
 
 public class Movement implements MouseListener,MouseMotionListener{
@@ -84,7 +86,18 @@ public class Movement implements MouseListener,MouseMotionListener{
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		//TEMPORAL SOLO QUIERO VER COMO QUEDA EL EFECTO
-
+		if(moneda.getValues()==100){
+			ImageIcon imagen = new ImageIcon("100pesos2.png");
+			moneda.getLabel().setIcon(new ImageIcon(imagen.getImage().getScaledInstance(moneda.getLabel().getWidth(),moneda.getLabel().getHeight(),Image.SCALE_SMOOTH)));
+		}else if(moneda.getValues()==500){
+			ImageIcon imagen = new ImageIcon("500pesos2.png");
+			moneda.getLabel().setIcon(new ImageIcon(imagen.getImage().getScaledInstance(moneda.getLabel().getWidth(),moneda.getLabel().getHeight(),Image.SCALE_SMOOTH)));
+			
+		}else if(moneda.getValues()==1000){
+			ImageIcon imagen = new ImageIcon("1000chelines2.png");
+			moneda.getLabel().setIcon(new ImageIcon(imagen.getImage().getScaledInstance(moneda.getLabel().getWidth(),moneda.getLabel().getHeight(),Image.SCALE_SMOOTH)));
+			
+		}
 		
 		// TODO Auto-generated method stub
 		
@@ -92,8 +105,20 @@ public class Movement implements MouseListener,MouseMotionListener{
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
 
+		if(moneda.getValues()==100){
+			ImageIcon imagen = new ImageIcon("100pesos.png");
+			moneda.getLabel().setIcon(new ImageIcon(imagen.getImage().getScaledInstance(moneda.getLabel().getWidth(),moneda.getLabel().getHeight(),Image.SCALE_SMOOTH)));
+
+		}else if(moneda.getValues()==500){
+			ImageIcon imagen = new ImageIcon("500pesos.png");
+			moneda.getLabel().setIcon(new ImageIcon(imagen.getImage().getScaledInstance(moneda.getLabel().getWidth(),moneda.getLabel().getHeight(),Image.SCALE_SMOOTH)));
+			
+		}else if(moneda.getValues()==1000){
+			ImageIcon imagen = new ImageIcon("1000chelines.png");
+			moneda.getLabel().setIcon(new ImageIcon(imagen.getImage().getScaledInstance(moneda.getLabel().getWidth(),moneda.getLabel().getHeight(),Image.SCALE_SMOOTH)));
+			
+		}
 		
 	}
 

@@ -6,9 +6,10 @@ import java.awt.Image;
 
 class Moneda500 extends Moneda{
 
+   JLabel moneda500;
    public Moneda500(JPanel target, Billetera billetera, Expendedor expendedor){
 
-      JLabel moneda500 = new JLabel();
+      moneda500 = new JLabel();
       ImageIcon imagen500 = new ImageIcon("500pesos.png");
       moneda500.setBounds(720,470,50,50);
       moneda500.setIcon(new ImageIcon(imagen500.getImage().getScaledInstance(moneda500.getWidth(),moneda500.getHeight(),Image.SCALE_SMOOTH)));
@@ -31,6 +32,11 @@ class Moneda500 extends Moneda{
     @Override
      public String toString(){
         return "Valor de la moneda: 500 \n Serie: "+ Moneda500.this.hashCode();
+     }
+
+     @Override
+     public JLabel getLabel(){
+      return moneda500;
      }
 
 
