@@ -7,8 +7,9 @@ import java.awt.Image;
 class Moneda500 extends Moneda{
 
    JLabel moneda500;
-   public Moneda500(JPanel target, Billetera billetera, Expendedor expendedor){
-
+   int serie;
+   public Moneda500(JPanel target, Billetera billetera, Expendedor expendedor,int serie){
+      this.serie = serie;
       moneda500 = new JLabel();
       ImageIcon imagen500 = new ImageIcon("500pesos.png");
       moneda500.setBounds(720,470,50,50);
@@ -16,6 +17,8 @@ class Moneda500 extends Moneda{
       //MOVIMIENTO DE LA MONEDA
       Movement movimiento500 = new Movement(moneda500, this, billetera, expendedor);
       target.add(moneda500);
+      target.setComponentZOrder(moneda500, 0);
+
 
    }
 

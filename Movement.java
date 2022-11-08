@@ -42,6 +42,7 @@ public class Movement implements MouseListener,MouseMotionListener{
 	public void mouseClicked(MouseEvent e) {
 		System.out.println("CLICK SIMPLE");
 		
+		
 	}
 
 	@Override
@@ -99,7 +100,7 @@ public class Movement implements MouseListener,MouseMotionListener{
 			
 		}
 		
-		// TODO Auto-generated method stub
+		System.out.println(moneda.getSerie());
 		
 	}
 

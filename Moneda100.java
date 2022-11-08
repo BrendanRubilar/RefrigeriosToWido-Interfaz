@@ -6,19 +6,23 @@ import java.awt.Image;
 
 class Moneda100 extends Moneda{
    JLabel moneda100;
+   int serie;
    public Moneda100(){
 
    }
-   public Moneda100(JPanel target, Billetera billetera, Expendedor expendedor){
-
+   public Moneda100(JPanel target, Billetera billetera, Expendedor expendedor,int serie, int auxiliar){
+      this.serie = serie;
       moneda100 = new JLabel();
       ImageIcon imagen100 = new ImageIcon("100pesos.png");
-      moneda100.setBounds(780,470,50,50);
+      if(auxiliar==0) moneda100.setBounds(780,470,50,50);
+      if(auxiliar==1) moneda100.setBounds(420,485,50,50);
       moneda100.setIcon(new ImageIcon(imagen100.getImage().getScaledInstance(moneda100.getWidth(),moneda100.getHeight(),Image.SCALE_SMOOTH)));
       Movement movimiento100 = new Movement(moneda100, this, billetera, expendedor);
       target.add(moneda100);
-
+      target.setComponentZOrder(moneda100, 0);
+      
    }
+
  
     @Override
      public int getValues(){
@@ -27,7 +31,7 @@ class Moneda100 extends Moneda{
 
     @Override
     public int getSerie(){
-        return Moneda100.this.hashCode();
+        return serie;
     }
 
     @Override

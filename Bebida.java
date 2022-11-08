@@ -39,6 +39,8 @@ class Sprite extends Bebida{
         lataSprite.setBounds(X,305,50,40);
         lataSprite.setIcon(new ImageIcon(imagenLataSprite.getImage().getScaledInstance(lataSprite.getWidth(),lataSprite.getHeight(),Image.SCALE_SMOOTH)));
         target.add(lataSprite);
+        
+
         EliminarBebida eliminar = new EliminarBebida(lataSprite,serie);
 
     }

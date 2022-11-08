@@ -8,7 +8,9 @@ import java.awt.Image;
 class Moneda1000 extends Moneda{
 
    JLabel moneda1000;
-   public Moneda1000(JPanel target, Billetera billetera, Expendedor expendedor){
+   int serie;
+   public Moneda1000(JPanel target, Billetera billetera, Expendedor expendedor,int serie){
+      this.serie = serie;
       //Pruebas moneda de 1000
       moneda1000 = new JLabel();
       ImageIcon imagen1000 = new ImageIcon("1000chelines.png");
@@ -17,6 +19,8 @@ class Moneda1000 extends Moneda{
       //MOVIMIENTO DE LA MONEDA
       Movement movimiento1000 = new Movement(moneda1000, this, billetera, expendedor);
       target.add(moneda1000);
+      target.setComponentZOrder(moneda1000, 0);
+
    }
 
     @Override

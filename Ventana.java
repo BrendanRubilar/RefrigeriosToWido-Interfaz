@@ -9,8 +9,9 @@ import javax.swing.JPanel;
 
 public class Ventana extends JFrame implements ActionListener{
 
+    
     public JPanel panel1;
-    public JPanel panelExpendedora;
+    public JPanel panel2;
     JButton coca, fanta, sprite, comprar, botonVuelto;
     JLabel BebidaSelec, monedaV;
     String PrecioBebida;
@@ -31,11 +32,10 @@ public class Ventana extends JFrame implements ActionListener{
         expendedorMain = new Expendedor(4,500,panel1);
         PrecioBebida = String.valueOf(expendedorMain.getPrecio());
         comprador = new Comprador(); 
-              
-        comprador.crearMonedas(0, 4, panel1,expendedorMain);
-        comprador.crearMonedas(1, 4, panel1,expendedorMain);
-        comprador.crearMonedas(2,4,panel1,expendedorMain);
-
+        comprador.crearMonedas(0, 4, panel1,expendedorMain,0);
+        comprador.crearMonedas(1, 4, panel1,expendedorMain,0);
+        comprador.crearMonedas(2,4,panel1,expendedorMain,0);
+        
         iniciarComponentes(); 
 
     }
@@ -46,11 +46,13 @@ public class Ventana extends JFrame implements ActionListener{
     }
     
     private void iniciarPaneles(){
-        panel1 = new JPanel();
-        panelExpendedora = new JPanel();
-        panelExpendedora.setLayout(null);
+        panel1 = new JPanel();  
         panel1.setLayout(null);
         getContentPane().add(panel1);
+
+
+
+
 
     }
     
@@ -127,7 +129,7 @@ public class Ventana extends JFrame implements ActionListener{
         ImageIcon cajaExpendedor = new ImageIcon("cajita.jpg");
         color1.setBounds(0,0,600,700);
         color1.setIcon(new ImageIcon(cajaExpendedor.getImage().getScaledInstance(color1.getWidth(),color1.getHeight(),Image.SCALE_SMOOTH)));
-        
+
         ImageIcon cajaExpendedor2 = new ImageIcon("cajita2.jpg");
         color2.setBounds(600,0,400,700);
         color2.setIcon(new ImageIcon(cajaExpendedor2.getImage().getScaledInstance(color2.getWidth(),color2.getHeight(),Image.SCALE_SMOOTH)));
@@ -148,6 +150,7 @@ public class Ventana extends JFrame implements ActionListener{
 
         salidaMonedas.setBounds(420,485,70,70);
         salidaMonedas.setIcon(new ImageIcon(cajaB.getImage().getScaledInstance(salidaMonedas.getWidth(),salidaMonedas.getHeight(),Image.SCALE_SMOOTH)));
+        
 
         panel1.add(Precio);
         panel1.add(BebidaSelec);        
@@ -159,6 +162,7 @@ public class Ventana extends JFrame implements ActionListener{
         panel1.add(salidaMonedas);
         panel1.add(salidaBebida);
         panel1.add(color1);
+
     }
 
     //CONTROL DE LOS BOTONES
@@ -180,14 +184,25 @@ public class Ventana extends JFrame implements ActionListener{
 
         }
         if(e.getSource()==botonVuelto){
-    //Aplicar mismo algoritmo de las bebidas, aparecer en deposito y al hacer click retirarla.
-            //monedaV = new JLabel();
-            //ImageIcon vuelto100 = new ImageIcon("100pesos.png");
-            //monedaV.setBounds(420,485,70,70);
-            //monedaV.setIcon(new ImageIcon(vuelto100.getImage().getScaledInstance(monedaV.getWidth(),monedaV.getHeight(),Image.SCALE_SMOOTH)));
-            //panel1.add(monedaV);
-            expendedorMain.entregarVuelto();           
-            System.out.println("Estamos trabajando para entregar vuelto, vuelva más tarde.");
+
+            switch(expendedorMain.valorMoneda()){
+                case 100:
+                comprador.crearMonedas(0, 1, panel1, expendedorMain, 1,expendedorMain.getSerie());
+                repaint();
+                break;
+
+                case 500: 
+                comprador.crearMonedas(1, 1, panel1, expendedorMain, 1,expendedorMain.getSerie());
+                repaint();
+                break;
+                
+                case 1000: 
+                comprador.crearMonedas(1, 1, panel1, expendedorMain, 1,expendedorMain.getSerie());
+                repaint();
+                break;
+
+            }
+
         }
         if(e.getSource()==comprar){
 

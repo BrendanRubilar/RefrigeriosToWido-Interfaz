@@ -92,6 +92,14 @@ class Expendedor extends JLabel{
         monedaDepositada = moneda;
     }
 
+    public int valorMoneda(){
+        return monedaDepositada.getValues();
+    }
+
+    public int getSerie(){
+        return monedaDepositada.getSerie();
+    }
+
     //Este se invoca desde el constructor de Comprador
     public void comprarBebida(int bebidaSeleccionada){
         //Lo primero que se debe hacer es verificar si la moneda es nula, de ser así no se sigue ejecutando el codigo
