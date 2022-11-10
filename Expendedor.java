@@ -11,20 +11,17 @@ class Expendedor extends JLabel{
     private DepositoMonedas vuelto;
     private int Precio;
     private Moneda monedaDepositada;
-    private int cantidadDeMonedadsAdevolver;
+    private int cantidadDeMonedasAdevolver;
 
 
     public Expendedor(){
 
     }
-    
     //La maquina tiene un deposito donde almacena el vuelto a entregar
     //Constructor del expendedor, se le entrega la cantidad de bebidas y el precio (Valores iguales para todos los depositos)
     public Expendedor(int cantidad, int precio,JPanel target) {
-
         if(cantidad>=8) cantidad=8;  //Controlar limite de bebidas por deposito
         int X=110;
-        
         this.Precio = precio ;
         coca = new Deposito();
         sprite = new Deposito();
@@ -33,10 +30,21 @@ class Expendedor extends JLabel{
 
         for (int i = 0; i < cantidad; i++) {
             coca.addBebida(new CocaCola(X,target,1000+i));
-            fanta.addBebida(new Fanta(X,target,3000+i));
-            sprite.addBebida(new Sprite(X,target,2000+i));
+            fanta.addBebida(new Fanta(X,target,2000+i));
+            sprite.addBebida(new Sprite(X,target,3000+i));
             X=X+50;
         }
+    }
+
+    public Boolean hayVuelto(){
+        if(vuelto.listIsEmpty()==false){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public int CantidadDevolver(){
+        return cantidadDeMonedasAdevolver;
     }
 
     public int getPrecio(){
@@ -46,33 +54,16 @@ class Expendedor extends JLabel{
     //Metodo devolver el vuelto (Debe ir eliminado de una en una moneda hasta retornar null)
     public void calcularVuelto(int valorDeLaMoneda){
         
-        cantidadDeMonedadsAdevolver = (valorDeLaMoneda-this.Precio)/100;
+        cantidadDeMonedasAdevolver = (valorDeLaMoneda-this.Precio)/100;
         //Este for entregara monedas de 100 en 100 hasta vaciar el deposito de Vuelto
-        for (int i = 0; i < cantidadDeMonedadsAdevolver; i++){
+        for (int i = 0; i < cantidadDeMonedasAdevolver; i++){
             vuelto.addMoneda(new Moneda100());
-
         }
 
     }
 
-    public int CantidadDevolver(){
-        return cantidadDeMonedadsAdevolver;
-    }
-
-    public Boolean hayVuelto(){
-        if(vuelto.listIsEmpty()==false){
-            return true;
-        }else{
-            return false;
-        }
-        
-    }
-
-
-    public void entregarVuelto(){
-
+    public void entregarVuelto(){      
         vuelto.getMoneda();
-        
     }
 
     public void moverBebida(Bebida bebida){
@@ -140,6 +131,7 @@ class Expendedor extends JLabel{
                     calcularVuelto(monedaDepositada.getValues());
                     sacarBebida(bebidaSeleccionada);
                     this.recibirMoneda(null);
+                    
                 }else{
                   try{
                        switch(bebidaSeleccionada){
@@ -153,6 +145,11 @@ class Expendedor extends JLabel{
                             throw new Error3Exception("Seleccione una bebida valida");
                     }
                     }catch(Error3Exception msg3){
+                        if(bebidaSeleccionada==0||bebidaSeleccionada==1||bebidaSeleccionada==2){
+                            monedaDepositada.getLabel().setLocation(420,485);
+                            monedaDepositada.getLabel().setVisible(true);
+                            repaint();
+                        }
                         System.out.println(msg3.getMessage());
                     }
                 }
@@ -162,6 +159,10 @@ class Expendedor extends JLabel{
                         throw new Error1Exception("No hay saldo suficiente");
                     }
                 }catch(Error1Exception e){
+                        monedaDepositada.getLabel().setLocation(420,485);
+                        monedaDepositada.getLabel().setVisible(true);
+                        repaint();
+                
                     System.out.println(e.getMessage());
                 }
             }   
