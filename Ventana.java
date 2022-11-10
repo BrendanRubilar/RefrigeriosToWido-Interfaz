@@ -19,6 +19,7 @@ public class Ventana extends JFrame implements ActionListener{
     Movement movimiento500; //testing...
     Comprador comprador;
     int selectedB=9;
+    boolean compraEfectuada = false;
 
     public Ventana(){
 
@@ -31,12 +32,13 @@ public class Ventana extends JFrame implements ActionListener{
         iniciarPaneles();
         expendedorMain = new Expendedor(4,500,panel1);
         PrecioBebida = String.valueOf(expendedorMain.getPrecio());
-        comprador = new Comprador(); 
-        comprador.crearMonedas(0, 4, panel1,expendedorMain,0);
-        comprador.crearMonedas(1, 4, panel1,expendedorMain,0);
-        comprador.crearMonedas(2,4,panel1,expendedorMain,0);
-        
         iniciarComponentes(); 
+
+        comprador = new Comprador(botonVuelto,comprar); 
+        comprador.crearMonedas(0, 4, panel1,expendedorMain,0,botonVuelto,comprar);
+        comprador.crearMonedas(1, 4, panel1,expendedorMain,0,botonVuelto,comprar);
+        comprador.crearMonedas(2,4,panel1,expendedorMain,0,botonVuelto,comprar);
+        
 
     }
     
@@ -183,27 +185,25 @@ public class Ventana extends JFrame implements ActionListener{
             selectedB=2;
 
         }
-        if(e.getSource()==botonVuelto){
 
-            switch(expendedorMain.valorMoneda()){
-                case 100:
-                comprador.crearMonedas(0, 1, panel1, expendedorMain, 1,expendedorMain.getSerie());
-                repaint();
-                break;
+        if(e.getSource()==botonVuelto){ //PARA DEVOLVER DE 100
 
-                case 500: 
-                comprador.crearMonedas(1, 1, panel1, expendedorMain, 1,expendedorMain.getSerie());
-                repaint();
-                break;
-                
-                case 1000: 
-                comprador.crearMonedas(1, 1, panel1, expendedorMain, 1,expendedorMain.getSerie());
-                repaint();
-                break;
+            //Bandera
+            if(expendedorMain.hayVuelto()){
 
-            }
+                for(int i=0; i < expendedorMain.CantidadDevolver() ; i++){
+                    expendedorMain.entregarVuelto(); 
+                    comprador.crearMonedas(0, 1, panel1,expendedorMain,1,botonVuelto,comprar);
+                    repaint();
 
+                }
+
+
+            } 
+
+            
         }
+
         if(e.getSource()==comprar){
 
             switch(selectedB){

@@ -3,19 +3,29 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import java.awt.event.*;
+
 import java.awt.Image;
 
 
-public class Movement implements MouseListener,MouseMotionListener{
+public class Movement extends JLabel implements MouseListener,MouseMotionListener,ActionListener{
 
     private int X,Y;
 	boolean Presionada,flechaEncima;
-	Component target;
+	JLabel target;
 	Moneda moneda;
 	Billetera billetera;
 	Expendedor expendedor;
+	JButton botonVuelto, comprar;
 
-    public Movement(Component a, Moneda moneda, Billetera billetera, Expendedor expendedor){
+    public Movement(JLabel a, Moneda moneda, Billetera billetera, Expendedor expendedor,JButton botonVuelto, JButton comprar){
+		this.botonVuelto = botonVuelto;
+		this.comprar = comprar;
+        botonVuelto.addActionListener(this);
+        comprar.addActionListener(this);
+		
 		this.expendedor = expendedor;
 		this.moneda = moneda;
 		this.billetera = billetera;
@@ -40,9 +50,9 @@ public class Movement implements MouseListener,MouseMotionListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		System.out.println("CLICK SIMPLE");
-		
-		
+		System.out.println(moneda.getSerie());
+
+				
 	}
 
 	@Override
@@ -59,21 +69,6 @@ public class Movement implements MouseListener,MouseMotionListener{
 		
 		if( (target.getX()>=690 && target.getX()<=760)&&(target.getY()>=290 && target.getY()<=380) ){
 			
-			switch(moneda.getValues()){
-
-				case 100:
-				expendedor.recibirMoneda(billetera.getMoneda(0));
-				break;
-
-				case 500:
-				expendedor.recibirMoneda(billetera.getMoneda(1));
-				break;
-
-				case 1000:
-				expendedor.recibirMoneda(billetera.getMoneda(2));
-				break;
-			}
-
 			target.setVisible(false);
 			//SOLO PARA TESTEAR!
 			System.out.println("Valor moneda: " + moneda.getValues());
@@ -82,6 +77,24 @@ public class Movement implements MouseListener,MouseMotionListener{
 
 		}
 
+	}
+
+	public void enviarMoneda(Moneda moneda){
+		switch(moneda.getValues()){
+
+				
+			case 100:
+			expendedor.recibirMoneda(billetera.getMoneda(0));
+			break;
+
+			case 500:
+			expendedor.recibirMoneda(billetera.getMoneda(1));
+			break;
+
+			case 1000:
+			expendedor.recibirMoneda(billetera.getMoneda(2));
+			break;
+		}
 	}
 
 	@Override
@@ -100,7 +113,6 @@ public class Movement implements MouseListener,MouseMotionListener{
 			
 		}
 		
-		System.out.println(moneda.getSerie());
 		
 	}
 
@@ -125,6 +137,40 @@ public class Movement implements MouseListener,MouseMotionListener{
 
 	public Boolean EstadoMoneda(){
 		return Presionada;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e){
+
+		if(e.getSource()==comprar){
+
+			if( (target.getX()>=690 && target.getX()<=760)&&(target.getY()>=290 && target.getY()<=380) ){
+
+				if(target.isVisible()==false){
+
+					target.setLocation(1000, 0); //No elimina objeto, lo manda a china no mas, tener en consideracion
+					enviarMoneda(moneda);
+					moneda = null;
+
+				}
+			}
+			
+		}
+
+		if(e.getSource()==botonVuelto){
+
+			if( (target.getX()>=690 && target.getX()<=760)&&(target.getY()>=290 && target.getY()<=380) ){
+
+				target.setLocation(420,485);
+				target.setVisible(true);
+				repaint();
+		
+			}
+
+		}
+
+		
+	
 	}
 
 }
