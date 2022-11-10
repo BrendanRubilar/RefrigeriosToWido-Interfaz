@@ -11,6 +11,7 @@ class Expendedor extends JLabel{
     private DepositoMonedas vuelto;
     private int Precio;
     private Moneda monedaDepositada;
+    private int cantidadDeMonedadsAdevolver;
 
 
     public Expendedor(){
@@ -45,7 +46,7 @@ class Expendedor extends JLabel{
     //Metodo devolver el vuelto (Debe ir eliminado de una en una moneda hasta retornar null)
     public void calcularVuelto(int valorDeLaMoneda){
         
-        int cantidadDeMonedadsAdevolver = (valorDeLaMoneda-this.Precio)/100;
+        cantidadDeMonedadsAdevolver = (valorDeLaMoneda-this.Precio)/100;
         //Este for entregara monedas de 100 en 100 hasta vaciar el deposito de Vuelto
         for (int i = 0; i < cantidadDeMonedadsAdevolver; i++){
             vuelto.addMoneda(new Moneda100());
@@ -54,17 +55,24 @@ class Expendedor extends JLabel{
 
     }
 
-    public void texto(){
-        if(vuelto.listIsEmpty()==false){
-            System.out.println("Recibiste $100"); 
-        }else{
-            System.out.println("No hay vuelto");
-        }
+    public int CantidadDevolver(){
+        return cantidadDeMonedadsAdevolver;
     }
 
+    public Boolean hayVuelto(){
+        if(vuelto.listIsEmpty()==false){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
+
+
     public void entregarVuelto(){
-        texto();
+
         vuelto.getMoneda();
+        
     }
 
     public void moverBebida(Bebida bebida){
@@ -129,9 +137,9 @@ class Expendedor extends JLabel{
             }else if(monedaDepositada.getValues() >= this.Precio){
 
                 if(booleanAux){
+                    calcularVuelto(monedaDepositada.getValues());
                     sacarBebida(bebidaSeleccionada);
                     this.recibirMoneda(null);
-                    calcularVuelto(monedaDepositada.getValues());
                 }else{
                   try{
                        switch(bebidaSeleccionada){
