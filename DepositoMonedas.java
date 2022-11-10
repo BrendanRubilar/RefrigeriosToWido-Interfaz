@@ -1,5 +1,3 @@
-package Tarea3;
-
 import java.util.ArrayList;
 
 class DepositoMonedas {
@@ -30,4 +28,5 @@ class DepositoMonedas {
             return null;
         }
     }
+    
 }

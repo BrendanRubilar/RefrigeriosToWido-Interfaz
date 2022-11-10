@@ -1,46 +1,60 @@
-package Tarea3;
-import java.awt.*;
-import javax.swing.*;
 
-public class Comprador extends JPanel{
-    
-    
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
-    public void paint (Graphics g) { 
-        super.paint(g);
-    }
-        
-    //Al crear el cliente, comprará la bebida con los datos que se le indiquen.
-    public Comprador(Moneda moneda, int bebidaElegida, Expendedor expendedorQueUsara){
-        
-        InitInterfaz();
-        expendedorQueUsara.comprarBebida(moneda, bebidaElegida);
-    }
-    
+public class Comprador extends JLabel{
+
+    Billetera billetera;
+    JLabel moneda100,moneda500,moneda1000;
+     
+    //EL "COMPRADOR" genera monedas para comprar en la maquina...
+
+    //0 = 100, 1 = 500, 2= 1000
     public Comprador(){
+        billetera = new Billetera();
         
-        InitInterfaz();
     }
     
-    public void InitInterfaz(){
-                
-       this.setBounds(500,10,275,750);
-       this.setBackground(Color.green);
-       JButton botonCoca = new JButton();
-       botonCoca.setBounds(10,0,50,50);
-       this.add(botonCoca);
-       JButton botonSprite = new JButton();
-       botonSprite.setBounds(70,0,50,50);
-       this.add(botonSprite);
-       JButton botonFanta = new JButton();
-       botonFanta.setBounds(130,0,50,50);
-       this.add(botonFanta);
+    //Este metodo creará monedas y las muestra en pantalla...
+    public void crearMonedas(int tipo, int cantidad, JPanel target, Expendedor expendedor,int auxiliar){
 
+        if(tipo==0){
+
+            for(int i=0;i<cantidad;i++){
+                billetera.addMoneda(new Moneda100(target, billetera, expendedor,1000+i,auxiliar),0);
+            }
+        }else if(tipo==1){
+
+            for(int i=0;i<cantidad;i++){
+                billetera.addMoneda(new Moneda500(target, billetera, expendedor,2000+i,auxiliar),1);
+            }
+        }else if(tipo==2){
+
+            for(int i=0;i<cantidad;i++){
+                billetera.addMoneda(new Moneda1000(target, billetera, expendedor,3000+i,auxiliar),2);
+            }
+        }
     }
 
-    /*Entendemos que no se solita un metodo para comprar bebida, sin embargo nos parece importante poder realizar esta
-    acción fuera del constructor. */
-    public void ClienteCompraBebida(Moneda moneda, int bebidaElegida,Expendedor expendedorQueUsara){
-        expendedorQueUsara.comprarBebida(moneda, bebidaElegida);
+    public void crearMonedas(int tipo, int cantidad, JPanel target, Expendedor expendedor,int auxiliar, int serie){
+
+        if(tipo==0){
+
+            for(int i=0;i<cantidad;i++){
+                billetera.addMoneda(new Moneda100(target, billetera, expendedor,serie,auxiliar),0);
+            }
+
+        }else if(tipo==1){
+
+            for(int i=0;i<cantidad;i++){
+                billetera.addMoneda(new Moneda500(target, billetera, expendedor,serie,auxiliar),1);
+            }
+        }else if(tipo==2){
+
+            for(int i=0;i<cantidad;i++){
+                billetera.addMoneda(new Moneda1000(target, billetera, expendedor,serie,auxiliar),2);
+            }
+        }
     }
+    
 }

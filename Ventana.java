@@ -1,5 +1,4 @@
-package Tarea3;
-
+import java.awt.event.*;
 import java.awt.Color;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -8,119 +7,259 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Ventana extends JFrame {
+public class Ventana extends JFrame implements ActionListener {
+    private DepositoMonedas hayVuelto;
     public JPanel panel1;
-    public JPanel panelExpendedora;
+    public JPanel panel2;
+    JButton coca, fanta, sprite, comprar, botonVuelto;
+    JLabel BebidaSelec, monedaV;
+    String PrecioBebida;
+    Expendedor expendedorMain; // Auxiliar...
+    Movement movimiento500; // testing...
+    Comprador comprador;
+    int selectedB = 9;
+    boolean estadoCompra = false;
     
-    public Ventana(){
-        setSize(1000,700);
+
+    public Ventana() {
+
+        setSize(1000, 700);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Refrigerios ToWido");
         setResizable(false);
-        
-        iniciarComponentes();
-    }
-    
-    private void iniciarComponentes(){
+
         iniciarPaneles();
+        expendedorMain = new Expendedor(4, 100, panel1);
+        PrecioBebida = String.valueOf(expendedorMain.getPrecio());
+        comprador = new Comprador();
+        comprador.crearMonedas(0, 4, panel1, expendedorMain, 0);
+        comprador.crearMonedas(1, 4, panel1, expendedorMain, 0);
+        comprador.crearMonedas(2, 4, panel1, expendedorMain, 0);
+
+        iniciarComponentes();
+
+    }
+
+    private void iniciarComponentes() {
         iniciarBotones();
         iniciarEtiquetas();
     }
-    
-    private void iniciarPaneles(){
+
+    private void iniciarPaneles() {
         panel1 = new JPanel();
-        panelExpendedora = new JPanel();
-        panelExpendedora.setLayout(null);
         panel1.setLayout(null);
         getContentPane().add(panel1);
     }
-    
-    private void iniciarBotones(){
-        
-        //Botón cocacola
-        JButton coca = new JButton();
+
+    private void iniciarBotones() {
+
+        // Botón comprar
+        comprar = new JButton();
+        comprar.addActionListener(this);
+        ImageIcon imagenComprar = new ImageIcon("botonCompra.png");
+        comprar.setBounds(800, 320, 50, 50);
+        comprar.setIcon(new ImageIcon(imagenComprar.getImage().getScaledInstance(comprar.getWidth(),
+                comprar.getHeight(), Image.SCALE_SMOOTH)));
+
+        // Botón vuelto
+        botonVuelto = new JButton();
+        botonVuelto.addActionListener(this);
+        ImageIcon imagenVuelto = new ImageIcon("Vuelto.jpeg");
+        botonVuelto.setBounds(890, 320, 50, 50);
+        botonVuelto.setIcon(new ImageIcon(imagenVuelto.getImage().getScaledInstance(botonVuelto.getWidth(),
+                botonVuelto.getHeight(), Image.SCALE_SMOOTH)));
+
+        // Botón cocacola
+        coca = new JButton();
+        coca.addActionListener(this);
         ImageIcon imagenCoca = new ImageIcon("coca.png");
-        coca.setBounds(700,200,50,50);
-        coca.setIcon(new ImageIcon(imagenCoca.getImage().getScaledInstance(coca.getWidth(),coca.getHeight(),Image.SCALE_SMOOTH)));
-        
+        coca.setBounds(700, 200, 50, 50);
+        coca.setIcon(new ImageIcon(
+                imagenCoca.getImage().getScaledInstance(coca.getWidth(), coca.getHeight(), Image.SCALE_SMOOTH)));
+
         // Boton fanta
-        JButton fanta = new JButton();
+        fanta = new JButton();
+        fanta.addActionListener(this);
         ImageIcon imagenFanta = new ImageIcon("fanta.jpg");
-        fanta.setBounds(770,200,50,50);
-        fanta.setIcon(new ImageIcon(imagenFanta.getImage().getScaledInstance(fanta.getWidth(),fanta.getHeight(),Image.SCALE_SMOOTH)));
-        
+        fanta.setBounds(770, 200, 50, 50);
+        fanta.setIcon(new ImageIcon(
+                imagenFanta.getImage().getScaledInstance(fanta.getWidth(), fanta.getHeight(), Image.SCALE_SMOOTH)));
+
         // Boton sprite
-        JButton sprite = new JButton();
+        sprite = new JButton();
+        sprite.addActionListener(this);
         ImageIcon imagenSprite = new ImageIcon("sprite.png");
-        sprite.setBounds(840,200,50,50);
-        sprite.setIcon(new ImageIcon(imagenSprite.getImage().getScaledInstance(sprite.getWidth(),sprite.getHeight(),Image.SCALE_SMOOTH)));
-        
-        JButton insertarMoneda = new JButton();
-        ImageIcon imagenInsertarMoneda = new ImageIcon("insertarMoneda.jpeg");
-        insertarMoneda.setBounds(700,300,50,70);
-        insertarMoneda.setIcon(new ImageIcon(imagenInsertarMoneda.getImage().getScaledInstance(insertarMoneda.getWidth(),insertarMoneda.getHeight(),Image.SCALE_SMOOTH)));
-        
-        JButton moneda100 = new JButton();
-        ImageIcon imagen100 = new ImageIcon("100pesos.png");
-        moneda100.setBounds(700,400,50,50);
-        moneda100.setIcon(new ImageIcon(imagen100.getImage().getScaledInstance(moneda100.getWidth(),moneda100.getHeight(),Image.SCALE_SMOOTH)));
-        
+        sprite.setBounds(840, 200, 50, 50);
+        sprite.setIcon(new ImageIcon(
+        imagenSprite.getImage().getScaledInstance(sprite.getWidth(), sprite.getHeight(), Image.SCALE_SMOOTH)));
+
+        panel1.add(botonVuelto);
+
+
+        panel1.add(comprar);
         panel1.add(coca);
         panel1.add(fanta);
         panel1.add(sprite);
-        panel1.add(insertarMoneda);
-        panel1.add(moneda100);
+
     }
-    private void iniciarEtiquetas(){
+
+    private void iniciarEtiquetas() {
+        BebidaSelec = new JLabel();
+        JLabel Precio = new JLabel();
+        JLabel insertarMoneda = new JLabel();
         JLabel color1 = new JLabel();
         JLabel color2 = new JLabel();
         JLabel verCoca = new JLabel();
         JLabel verFanta = new JLabel();
         JLabel verSprite = new JLabel();
         JLabel salidaBebida = new JLabel();
-        JLabel lataCoca = new JLabel();
-        JLabel moneda500 = new JLabel();
-        
-        ImageIcon imagenLataCoca = new ImageIcon("lataCoca.png");
-        lataCoca.setBounds(110,105,50,40);
-        lataCoca.setIcon(new ImageIcon(imagenLataCoca.getImage().getScaledInstance(lataCoca.getWidth(),lataCoca.getHeight(),Image.SCALE_SMOOTH)));
-        
-        ImageIcon imagen500 = new ImageIcon("500pesos.png");
-        moneda500.setBounds(700,470,50,50);
-        moneda500.setIcon(new ImageIcon(imagen500.getImage().getScaledInstance(moneda500.getWidth(),moneda500.getHeight(),Image.SCALE_SMOOTH)));
-        
-        color1.setBounds(0,0,600,700);
-        color1.setOpaque(true);
-        color1.setBackground(Color.gray);
-        
-        color2.setBounds(600,0,400,700);
-        color2.setOpaque(true);
-        color2.setBackground(Color.black);
-        
-        verCoca.setBounds(100,100,400,50);
-        verCoca.setOpaque(true);
-        verCoca.setBackground(Color.blue);
-        
-        verFanta.setBounds(100,200,400,50);
-        verFanta.setOpaque(true);
-        verFanta.setBackground(Color.blue);
-        
-        verSprite.setBounds(100,300,400,50);
-        verSprite.setOpaque(true);
-        verSprite.setBackground(Color.blue);
-        
-        salidaBebida.setBounds(200,500,200,70);
-        salidaBebida.setOpaque(true);
-        salidaBebida.setBackground(Color.black);
-        
-        panel1.add(moneda500);        
+        JLabel salidaMonedas = new JLabel();
+
+        ImageIcon imagenInsertarMoneda = new ImageIcon("insertarMoneda.jpeg");
+        insertarMoneda.setBounds(700, 300, 50, 70);
+        insertarMoneda.setIcon(new ImageIcon(imagenInsertarMoneda.getImage()
+                .getScaledInstance(insertarMoneda.getWidth(), insertarMoneda.getHeight(), Image.SCALE_SMOOTH)));
+
+        Precio.setBounds(620, 80, 240, 40);
+        Precio.setOpaque(true);
+        Precio.setBackground(Color.white);
+        Precio.setText(" PRECIO BEBIDA: $" + PrecioBebida);
+
+        BebidaSelec.setBounds(620, 30, 240, 40);
+        BebidaSelec.setOpaque(true);
+        BebidaSelec.setBackground(Color.white);
+        BebidaSelec.setText(" BEBIDA SELECCIONADA:        ");
+
+        ImageIcon cajaExpendedor = new ImageIcon("cajita.jpg");
+        color1.setBounds(0, 0, 600, 700);
+        color1.setIcon(new ImageIcon(cajaExpendedor.getImage().getScaledInstance(color1.getWidth(), color1.getHeight(),
+                Image.SCALE_SMOOTH)));
+
+        ImageIcon cajaExpendedor2 = new ImageIcon("cajita2.jpg");
+        color2.setBounds(600, 0, 400, 700);
+        color2.setIcon(new ImageIcon(cajaExpendedor2.getImage().getScaledInstance(color2.getWidth(), color2.getHeight(),
+                Image.SCALE_SMOOTH)));
+
+        ImageIcon cajaB = new ImageIcon("cajaBebidas.jpg");
+
+        verCoca.setBounds(100, 95, 400, 55);
+        verCoca.setIcon(new ImageIcon(
+                cajaB.getImage().getScaledInstance(verCoca.getWidth(), verCoca.getHeight(), Image.SCALE_SMOOTH)));
+
+        verFanta.setBounds(100, 195, 400, 55);
+        verFanta.setIcon(new ImageIcon(
+                cajaB.getImage().getScaledInstance(verFanta.getWidth(), verFanta.getHeight(), Image.SCALE_SMOOTH)));
+
+        verSprite.setBounds(100, 295, 400, 55);
+        verSprite.setIcon(new ImageIcon(
+                cajaB.getImage().getScaledInstance(verSprite.getWidth(), verSprite.getHeight(), Image.SCALE_SMOOTH)));
+
+        salidaBebida.setBounds(100, 485, 300, 70);
+        salidaBebida.setIcon(new ImageIcon(cajaB.getImage().getScaledInstance(salidaBebida.getWidth(),
+                salidaBebida.getHeight(), Image.SCALE_SMOOTH)));
+
+        salidaMonedas.setBounds(420, 485, 70, 70);
+        salidaMonedas.setIcon(new ImageIcon(cajaB.getImage().getScaledInstance(salidaMonedas.getWidth(),
+                salidaMonedas.getHeight(), Image.SCALE_SMOOTH)));
+
+        panel1.add(Precio);
+        panel1.add(BebidaSelec);
+        panel1.add(insertarMoneda);
         panel1.add(color2);
-        panel1.add(lataCoca);
-        panel1.add(verFanta);
         panel1.add(verCoca);
+        panel1.add(verFanta);
         panel1.add(verSprite);
+        panel1.add(salidaMonedas);
         panel1.add(salidaBebida);
         panel1.add(color1);
+
     }
+
+    // CONTROL DE LOS BOTONES
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        if (e.getSource() == coca) {
+            BebidaSelec.setText(" BEBIDA SELECCIONADA: COCA-COLA");
+            selectedB = 0;
+            botonVuelto.setVisible(true);
+            repaint();
+
+        }
+        if (e.getSource() == fanta) {
+            BebidaSelec.setText(" BEBIDA SELECCIONADA: FANTA");
+            selectedB = 1;
+            botonVuelto.setVisible(false);
+            repaint();
+
+
+        }
+        if (e.getSource() == sprite) {
+            BebidaSelec.setText(" BEBIDA SELECCIONADA: SPRITE");
+            selectedB = 2;
+
+        }
+        if (e.getSource() == botonVuelto) {
+            
+            if(estadoCompra==false){ //Devolver moneda al no realizar compra
+
+                switch(expendedorMain.valorMoneda()){
+                    case 100:
+                    comprador.crearMonedas(0, 1, panel1, expendedorMain, 1,expendedorMain.getSerie());
+                    repaint();
+                    break;
+    
+                    case 500: 
+                    comprador.crearMonedas(1, 1, panel1, expendedorMain, 1,expendedorMain.getSerie());
+                    repaint();
+                    break;
+                    
+                    case 1000: 
+                    comprador.crearMonedas(2, 1, panel1, expendedorMain, 1,expendedorMain.getSerie());
+                    repaint();
+                    break;
+    
+                }
+                
+
+            }else if(estadoCompra==true){ //Al realizar una compra devolver el vuelto en monedas de 100
+                expendedorMain.entregarVuelto();
+
+            }
+
+        }
+
+        if (e.getSource() == comprar)
+
+        {
+
+            switch (selectedB) {
+                case 0:
+                    System.out.println("Recibiendo Coca");
+                    expendedorMain.comprarBebida(selectedB);
+                    estadoCompra = true;
+                    break;
+
+                case 1:
+                    System.out.println("Recibiendo Fanta");
+                    expendedorMain.comprarBebida(selectedB);
+                    estadoCompra = true;
+
+                    break;
+
+                case 2:
+                    System.out.println("Recibiendo Sprite");
+                    expendedorMain.comprarBebida(selectedB);
+                    estadoCompra = true;
+                    
+                    break;
+
+                default:
+                    System.out.println("Seleccione una bebida");
+                    break;
+            }
+        }
+    }
+
 }

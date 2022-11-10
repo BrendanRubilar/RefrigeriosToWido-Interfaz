@@ -1,39 +1,28 @@
-package Tarea3;
-import java.awt.*;
-import javax.swing.*;
-
 import java.util.Objects;
 
-class Expendedor extends JPanel{
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+
+class Expendedor extends JLabel{
     private Deposito fanta;
     private Deposito coca;
     private Deposito sprite;
     private DepositoMonedas vuelto;
     private int Precio;
+    private Moneda monedaDepositada;
 
-    @Override
-    public void paint (Graphics g) { 
-        super.paint(g);
-    }
-    
+
     public Expendedor(){
-        
-        InitInterfaz();
 
     }
     
-    public void InitInterfaz(){
-         
-       this.setBounds(10,10,500,750);
-       this.setBackground(Color.blue);
-       
-    }
-
     //La maquina tiene un deposito donde almacena el vuelto a entregar
     //Constructor del expendedor, se le entrega la cantidad de bebidas y el precio (Valores iguales para todos los depositos)
-    public Expendedor(int cantidad, int precio) {
-        
-        InitInterfaz();
+    public Expendedor(int cantidad, int precio,JPanel target) {
+
+        if(cantidad>=8) cantidad=8;  //Controlar limite de bebidas por deposito
+        int X=110;
         
         this.Precio = precio ;
         coca = new Deposito();
@@ -42,9 +31,10 @@ class Expendedor extends JPanel{
         vuelto = new DepositoMonedas();
 
         for (int i = 0; i < cantidad; i++) {
-            coca.addBebida(new CocaCola(i+100));
-            sprite.addBebida(new Sprite(i+200));
-            fanta.addBebida(new Fanta(i+200));
+            coca.addBebida(new CocaCola(X,target,1000+i));
+            fanta.addBebida(new Fanta(X,target,3000+i));
+            sprite.addBebida(new Sprite(X,target,2000+i));
+            X=X+50;
         }
     }
 
@@ -56,8 +46,6 @@ class Expendedor extends JPanel{
     public void calcularVuelto(int valorDeLaMoneda){
         
         int cantidadDeMonedadsAdevolver = (valorDeLaMoneda-this.Precio)/100;
-        
-
         //Este for entregara monedas de 100 en 100 hasta vaciar el deposito de Vuelto
         for (int i = 0; i < cantidadDeMonedadsAdevolver; i++){
             vuelto.addMoneda(new Moneda100());
@@ -79,26 +67,43 @@ class Expendedor extends JPanel{
         vuelto.getMoneda();
     }
 
+    public void moverBebida(Bebida bebida){
+        Thread animar = new Thread(new AnimationBebida(bebida));
+        animar.start();
+    }
+
     public void sacarBebida(int bebidaSeleccionada){
-                    switch(bebidaSeleccionada){
-                case 0: coca.getBebida();
+            switch(bebidaSeleccionada){
+                case 0: moverBebida(coca.getBebida());
                         System.out.println("Ha comprado una Coca-Cola");
                         break;
 
-                case 1: sprite.getBebida();
-                        System.out.println("Ha comprado una Sprite");
+                case 1: moverBebida(fanta.getBebida());
+                        System.out.println("Ha comprado una Fanta");
                         break;
 
-                case 2: fanta.getBebida();
-                        System.out.println("Ha comprado una Fanta");
+                case 2: moverBebida(sprite.getBebida());
+                        System.out.println("Ha comprado una Sprite");
                         break;
             }
     }
     
+    public void recibirMoneda(Moneda moneda){
+        monedaDepositada = moneda;
+    }
+
+    public int valorMoneda(){
+        return monedaDepositada.getValues();
+    }
+
+    public int getSerie(){
+        return monedaDepositada.getSerie();
+    }
+
     //Este se invoca desde el constructor de Comprador
-    public void comprarBebida(Moneda moneda, int bebidaSeleccionada){
+    public void comprarBebida(int bebidaSeleccionada){
         //Lo primero que se debe hacer es verificar si la moneda es nula, de ser así no se sigue ejecutando el codigo
-        if( Objects.isNull(moneda)){
+        if( Objects.isNull(monedaDepositada)){
             try{
                 throw new Error3Exception("Moneda es Nula");
             }catch(Error3Exception msg3){
@@ -108,42 +113,44 @@ class Expendedor extends JPanel{
             //Este fragmento de codigo nos seleccionara el deposito de bebidas al que queremos acceder
             boolean booleanAux=false;
             switch(bebidaSeleccionada){
-              case 0: booleanAux= coca.hayBebidas();
+                case 0: booleanAux= coca.hayBebidas();
                         break;
-             case 1: booleanAux= sprite.hayBebidas();
+                case 1: booleanAux= fanta.hayBebidas();
                         break;
-             case 2: booleanAux= fanta.hayBebidas();
+                case 2: booleanAux= sprite.hayBebidas();
             }
 
-        
             //Este codigo está encargado de verificar todos los casos y realizar la compra de la bebida
-            if(moneda.getValues() == this.Precio && booleanAux){
-              sacarBebida(bebidaSeleccionada);
+            if(monedaDepositada.getValues() == this.Precio && booleanAux){
+                sacarBebida(bebidaSeleccionada);
+                this.recibirMoneda(null);
 
-            }else if(moneda.getValues() >= this.Precio){
+            }else if(monedaDepositada.getValues() >= this.Precio){
 
-             if(booleanAux){
-                   sacarBebida(bebidaSeleccionada);
-                    calcularVuelto(moneda.getValues());
+                if(booleanAux){
+                    calcularVuelto(monedaDepositada.getValues());
+                    sacarBebida(bebidaSeleccionada);
+                    this.recibirMoneda(null);
+                    
                 }else{
                   try{
                        switch(bebidaSeleccionada){
                         case 0:
                             throw new Error3Exception("No queda CocaCola");
                         case 1:
-                            throw new Error3Exception("No queda Sprite");
-                        case 2:
                             throw new Error3Exception("No queda Fanta");
+                        case 2:
+                            throw new Error3Exception("No queda Sprite");
                         default:
                             throw new Error3Exception("Seleccione una bebida valida");
-                    }
+                        }
                     }catch(Error3Exception msg3){
                         System.out.println(msg3.getMessage());
                     }
                 }
             }else{ 
                 try{
-                    if(moneda.getValues() < this.Precio){
+                    if(monedaDepositada.getValues() < this.Precio){
                         throw new Error1Exception("No hay saldo suficiente");
                     }
                 }catch(Error1Exception e){
@@ -151,5 +158,6 @@ class Expendedor extends JPanel{
                 }
             }   
         }
-    }    
+    }
+
 }
