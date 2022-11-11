@@ -50,7 +50,7 @@ public class Movement extends JLabel implements MouseListener,MouseMotionListene
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		System.out.println(moneda.getSerie());
+		System.out.println("Serie moneda: " + moneda.getSerie());
 
 				
 	}
@@ -72,8 +72,6 @@ public class Movement extends JLabel implements MouseListener,MouseMotionListene
 			target.setVisible(false);
 			//SOLO PARA TESTEAR!
 			System.out.println("Valor moneda: " + moneda.getValues());
-			System.out.println("DESAPARECER"); 
-
 
 		}
 
@@ -169,8 +167,6 @@ public class Movement extends JLabel implements MouseListener,MouseMotionListene
 
 		}
 
-		
-	
 	}
 
 }

@@ -4,13 +4,11 @@ import javax.swing.ImageIcon;
 import java.awt.Image;
 import javax.swing.JButton;
 
-
-
 class Moneda100 extends Moneda{
    JLabel moneda100;
    int serie;
    public Moneda100(){
-
+      
    }
    public Moneda100(JPanel target, Billetera billetera, Expendedor expendedor,int serie, int auxiliar,JButton botonVuelto,JButton comprar){
       this.serie = serie;
@@ -24,7 +22,6 @@ class Moneda100 extends Moneda{
       target.setComponentZOrder(moneda100, 0);
       
    }
-
  
     @Override
      public int getValues(){
@@ -45,6 +42,5 @@ class Moneda100 extends Moneda{
      public JLabel getLabel(){
       return moneda100;
      }
-
 
 }
