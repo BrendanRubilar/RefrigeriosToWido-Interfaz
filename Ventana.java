@@ -116,7 +116,7 @@ public class Ventana extends JFrame implements ActionListener{
         JLabel lineaB = new JLabel();
 
         ImageIcon imagenInsertarMoneda = new ImageIcon("insertarMoneda.jpeg");
-        insertarMoneda.setBounds(680,300,50,70); 
+        insertarMoneda.setBounds(690,300,50,70); 
         insertarMoneda.setIcon(new ImageIcon(imagenInsertarMoneda.getImage().getScaledInstance(insertarMoneda.getWidth(),insertarMoneda.getHeight(),Image.SCALE_SMOOTH)));
 
         ImageIcon lineaM = new ImageIcon("lineaB.jpg");
