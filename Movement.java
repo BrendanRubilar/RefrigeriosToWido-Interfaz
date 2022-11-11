@@ -6,9 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.*;
-
 import java.awt.Image;
-
 
 public class Movement extends JLabel implements MouseListener,MouseMotionListener,ActionListener{
 
@@ -51,8 +49,7 @@ public class Movement extends JLabel implements MouseListener,MouseMotionListene
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		System.out.println("Serie moneda: " + moneda.getSerie());
-
-				
+			
 	}
 
 	@Override
@@ -79,8 +76,7 @@ public class Movement extends JLabel implements MouseListener,MouseMotionListene
 
 	public void enviarMoneda(Moneda moneda){
 		switch(moneda.getValues()){
-
-				
+		
 			case 100:
 			expendedor.recibirMoneda(billetera.getMoneda(0));
 			break;
@@ -110,8 +106,7 @@ public class Movement extends JLabel implements MouseListener,MouseMotionListene
 			moneda.getLabel().setIcon(new ImageIcon(imagen.getImage().getScaledInstance(moneda.getLabel().getWidth(),moneda.getLabel().getHeight(),Image.SCALE_SMOOTH)));
 			
 		}
-		
-		
+			
 	}
 
 	@Override

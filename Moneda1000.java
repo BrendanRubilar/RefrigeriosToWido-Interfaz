@@ -4,8 +4,6 @@ import javax.swing.ImageIcon;
 import java.awt.Image;
 import javax.swing.JButton;
 
-
-
 class Moneda1000 extends Moneda{
 
    JLabel moneda1000;

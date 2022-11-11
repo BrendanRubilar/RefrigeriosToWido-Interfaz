@@ -1,9 +1,7 @@
 import javax.swing.JLabel;
 
-
 abstract class Moneda extends JLabel{
     
-
     public Moneda(){
 
     }

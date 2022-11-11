@@ -1,4 +1,4 @@
-
+import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -22,7 +22,8 @@ public class Comprador extends JLabel{
     
     //Este metodo creará monedas y las muestra en pantalla...
     public void crearMonedas(int tipo, int cantidad, JPanel target, Expendedor expendedor,int auxiliar, JButton botonVuelto, JButton comprar){
-
+        Random r =new Random();
+        int j_aux = r.nextInt(10000);    
         if(tipo==0){
 
             for(int i=0;i<cantidad;i++){
@@ -38,6 +39,13 @@ public class Comprador extends JLabel{
 
             for(int i=0;i<cantidad;i++){
                 billetera.addMoneda(new Moneda1000(target, billetera, expendedor,3000+i,botonVuelto,comprar),2);
+            }
+        }else if(tipo==3){
+//monedas de vuelto
+            for(int i=0;i<cantidad;i++){
+                
+                billetera.addMoneda(new Moneda100(target, billetera, expendedor,4000 + j_aux,auxiliar,botonVuelto,comprar),0);
+                
             }
         }
     }

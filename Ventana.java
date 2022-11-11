@@ -1,5 +1,6 @@
 import java.awt.event.*;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,7 +21,8 @@ public class Ventana extends JFrame implements ActionListener{
     Comprador comprador;
     int selectedB=9;
     boolean compraEfectuada = false;
-
+    
+    
     public Ventana(){
 
         setSize(1000,700);
@@ -30,7 +32,7 @@ public class Ventana extends JFrame implements ActionListener{
         setResizable(false);
 
         iniciarPaneles();
-        expendedorMain = new Expendedor(4,500,panel1);
+        expendedorMain = new Expendedor(4,200,panel1);
         PrecioBebida = String.valueOf(expendedorMain.getPrecio());
         iniciarComponentes(); 
 
@@ -51,11 +53,6 @@ public class Ventana extends JFrame implements ActionListener{
         panel1 = new JPanel();  
         panel1.setLayout(null);
         getContentPane().add(panel1);
-
-
-
-
-
     }
     
     private void iniciarBotones(){
@@ -64,35 +61,36 @@ public class Ventana extends JFrame implements ActionListener{
         comprar = new JButton();
         comprar.addActionListener(this);
         ImageIcon imagenComprar = new ImageIcon("botonCompra.png");
-        comprar.setBounds(800,320,50,50);
+        comprar.setBounds(770,300,55,55);
         comprar.setIcon(new ImageIcon(imagenComprar.getImage().getScaledInstance(comprar.getWidth(),comprar.getHeight(),Image.SCALE_SMOOTH)));
 
         //Botón vuelto
         botonVuelto = new JButton();
         botonVuelto.addActionListener(this);
         ImageIcon imagenVuelto = new ImageIcon("Vuelto.jpeg");
-        botonVuelto.setBounds(890,320,50,50);
+        botonVuelto.setBounds(860,300,55,55);
         botonVuelto.setIcon(new ImageIcon(imagenVuelto.getImage().getScaledInstance(botonVuelto.getWidth(),botonVuelto.getHeight(),Image.SCALE_SMOOTH)));
+        botonVuelto.setMnemonic('b');
 
         //Botón cocacola
         coca = new JButton();
         coca.addActionListener(this);
         ImageIcon imagenCoca = new ImageIcon("coca.png");
-        coca.setBounds(700,200,50,50);
+        coca.setBounds(680,200,55,55);
         coca.setIcon(new ImageIcon(imagenCoca.getImage().getScaledInstance(coca.getWidth(),coca.getHeight(),Image.SCALE_SMOOTH)));
 
         // Boton fanta
         fanta = new JButton();
         fanta.addActionListener(this);
         ImageIcon imagenFanta = new ImageIcon("fanta.jpg");
-        fanta.setBounds(770,200,50,50);
+        fanta.setBounds(770,200,55,55);
         fanta.setIcon(new ImageIcon(imagenFanta.getImage().getScaledInstance(fanta.getWidth(),fanta.getHeight(),Image.SCALE_SMOOTH)));
         
         // Boton sprite
         sprite = new JButton();
         sprite.addActionListener(this);
         ImageIcon imagenSprite = new ImageIcon("sprite.png");
-        sprite.setBounds(840,200,50,50);
+        sprite.setBounds(860,200,55,55);
         sprite.setIcon(new ImageIcon(imagenSprite.getImage().getScaledInstance(sprite.getWidth(),sprite.getHeight(),Image.SCALE_SMOOTH)));
         
         panel1.add(botonVuelto);
@@ -113,20 +111,36 @@ public class Ventana extends JFrame implements ActionListener{
         JLabel verSprite = new JLabel();
         JLabel salidaBebida = new JLabel();
         JLabel salidaMonedas = new JLabel();
+        JLabel marcoTexto = new JLabel();
+        JLabel marcoTexto2 = new JLabel();
+        JLabel lineaB = new JLabel();
 
         ImageIcon imagenInsertarMoneda = new ImageIcon("insertarMoneda.jpeg");
-        insertarMoneda.setBounds(700,300,50,70); 
+        insertarMoneda.setBounds(680,300,50,70); 
         insertarMoneda.setIcon(new ImageIcon(imagenInsertarMoneda.getImage().getScaledInstance(insertarMoneda.getWidth(),insertarMoneda.getHeight(),Image.SCALE_SMOOTH)));
 
-        Precio.setBounds(620,80,240, 40);
+        ImageIcon lineaM = new ImageIcon("lineaB.jpg");
+        lineaB.setBounds(595,0,10,720);
+        lineaB.setIcon(new ImageIcon(lineaM.getImage()));
+
+        ImageIcon imagenMarco = new ImageIcon("marcoTexto.png");
+        marcoTexto.setBounds(610,90,356, 50);
+        marcoTexto.setIcon(new ImageIcon(imagenMarco.getImage().getScaledInstance(marcoTexto.getWidth(), marcoTexto.getHeight(), Image.SCALE_SMOOTH)));
+
+        marcoTexto2.setBounds(610,36,356, 50);
+        marcoTexto2.setIcon(new ImageIcon(imagenMarco.getImage().getScaledInstance(marcoTexto2.getWidth(), marcoTexto2.getHeight(), Image.SCALE_SMOOTH)));
+
+        Precio.setBounds(648,97,278, 37);
         Precio.setOpaque(true);
         Precio.setBackground(Color.white);
         Precio.setText(" PRECIO BEBIDA: $"+ PrecioBebida);
+        Precio.setFont(new Font("Cascadia Mono SemiBold", Font.BOLD, 14));
 
-        BebidaSelec.setBounds(620,30,240,40);
+        BebidaSelec.setBounds(648,43,278,37);
         BebidaSelec.setOpaque(true);
         BebidaSelec.setBackground(Color.white);
         BebidaSelec.setText(" BEBIDA SELECCIONADA:        ");
+        BebidaSelec.setFont(new Font("Cascadia Mono SemiBold", Font.BOLD, 14));
 
         ImageIcon cajaExpendedor = new ImageIcon("cajita.jpg");
         color1.setBounds(0,0,600,700);
@@ -153,9 +167,11 @@ public class Ventana extends JFrame implements ActionListener{
         salidaMonedas.setBounds(420,485,70,70);
         salidaMonedas.setIcon(new ImageIcon(cajaB.getImage().getScaledInstance(salidaMonedas.getWidth(),salidaMonedas.getHeight(),Image.SCALE_SMOOTH)));
         
-
         panel1.add(Precio);
-        panel1.add(BebidaSelec);        
+        panel1.add(BebidaSelec);
+        panel1.add(lineaB);
+        panel1.add(marcoTexto);
+        panel1.add(marcoTexto2);        
         panel1.add(insertarMoneda);
         panel1.add(color2);
         panel1.add(verCoca);
@@ -193,14 +209,12 @@ public class Ventana extends JFrame implements ActionListener{
 
                 for(int i=0; i < expendedorMain.CantidadDevolver() ; i++){
                     expendedorMain.entregarVuelto(); 
-                    comprador.crearMonedas(0, 1, panel1,expendedorMain,1,botonVuelto,comprar);
+                    comprador.crearMonedas(3, 1, panel1,expendedorMain,1,botonVuelto,comprar);
                     repaint();
 
                 }
 
-
             } 
-
             
         }
 

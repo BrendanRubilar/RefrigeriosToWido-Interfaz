@@ -4,7 +4,6 @@ import javax.swing.ImageIcon;
 import java.awt.Image;
 import javax.swing.JButton;
 
-
 class Moneda500 extends Moneda{
 
    JLabel moneda500;
@@ -19,7 +18,6 @@ class Moneda500 extends Moneda{
       Movement movimiento500 = new Movement(moneda500, this, billetera, expendedor,botonVuelto,comprar);
       target.add(moneda500);
       target.setComponentZOrder(moneda500, 0);
-
 
    }
 
@@ -42,6 +40,5 @@ class Moneda500 extends Moneda{
      public JLabel getLabel(){
       return moneda500;
      }
-
 
 }

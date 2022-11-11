@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 
-
 class Billetera{
 
     private ArrayList<Moneda> moneda100;
@@ -97,7 +96,5 @@ class Billetera{
         }
 
     }
-
-    
 
 }
