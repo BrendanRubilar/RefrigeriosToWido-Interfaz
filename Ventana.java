@@ -21,7 +21,8 @@ public class Ventana extends JFrame implements ActionListener{
     Comprador comprador;
     int selectedB=9;
     boolean compraEfectuada = false;
-
+    
+    
     public Ventana(){
 
         setSize(1000,700);
@@ -124,20 +125,22 @@ public class Ventana extends JFrame implements ActionListener{
 
         ImageIcon imagenMarco = new ImageIcon("marcoTexto.png");
         marcoTexto.setBounds(610,90,356, 50);
-        marcoTexto.setIcon(new ImageIcon(imagenMarco.getImage().getScaledInstance(marcoTexto.getWidth(), marcoTexto.getHeight(), Image.SCALE_SMOOTH)));
+        marcoTexto.setIcon(new ImageIcon(imagenMarco.getImage().getScaledInstance(marcoTexto.getWidth(),marcoTexto.getHeight(),Image.SCALE_SMOOTH)));
 
         marcoTexto2.setBounds(610,36,356, 50);
-        marcoTexto2.setIcon(new ImageIcon(imagenMarco.getImage().getScaledInstance(marcoTexto2.getWidth(), marcoTexto2.getHeight(), Image.SCALE_SMOOTH)));
+        marcoTexto2.setIcon(new ImageIcon(imagenMarco.getImage().getScaledInstance(marcoTexto2.getWidth(),marcoTexto2.getHeight(),Image.SCALE_SMOOTH)));
 
         Precio.setBounds(648,97,278, 37);
         Precio.setOpaque(true);
         Precio.setBackground(Color.white);
         Precio.setText(" PRECIO BEBIDA: $"+ PrecioBebida);
+        Precio.setFont(new Font("Cascadia Mono SemiBold", Font.BOLD, 14));
 
-        BebidaSelec.setBounds(620,30,240,40);
+        BebidaSelec.setBounds(648,43,278,37);
         BebidaSelec.setOpaque(true);
         BebidaSelec.setBackground(Color.white);
         BebidaSelec.setText(" BEBIDA SELECCIONADA:        ");
+        BebidaSelec.setFont(new Font("Cascadia Mono SemiBold", Font.BOLD, 14));
 
         ImageIcon cajaExpendedor = new ImageIcon("cajita.jpg");
         color1.setBounds(0,0,600,700);
@@ -164,9 +167,11 @@ public class Ventana extends JFrame implements ActionListener{
         salidaMonedas.setBounds(420,485,70,70);
         salidaMonedas.setIcon(new ImageIcon(cajaB.getImage().getScaledInstance(salidaMonedas.getWidth(),salidaMonedas.getHeight(),Image.SCALE_SMOOTH)));
         
-
         panel1.add(Precio);
-        panel1.add(BebidaSelec);        
+        panel1.add(BebidaSelec);
+        panel1.add(lineaB);
+        panel1.add(marcoTexto);
+        panel1.add(marcoTexto2);        
         panel1.add(insertarMoneda);
         panel1.add(color2);
         panel1.add(verCoca);
@@ -204,14 +209,12 @@ public class Ventana extends JFrame implements ActionListener{
 
                 for(int i=0; i < expendedorMain.CantidadDevolver() ; i++){
                     expendedorMain.entregarVuelto(); 
-                    comprador.crearMonedas(0, 1, panel1,expendedorMain,1,botonVuelto,comprar);
+                    comprador.crearMonedas(3, 1, panel1,expendedorMain,1,botonVuelto,comprar);
                     repaint();
 
                 }
 
-
             } 
-
             
         }
 
