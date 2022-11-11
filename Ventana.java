@@ -13,7 +13,7 @@ public class Ventana extends JFrame implements ActionListener{
     
     public JPanel panel1;
     public JPanel panel2;
-    JButton coca, fanta, sprite, comprar, botonVuelto;
+    JButton coca, fanta, sprite, comprar, botonVuelto, rellenarCoca, rellenarSprite, rellenarFanta;
     JLabel BebidaSelec, monedaV;
     String PrecioBebida;
     Expendedor expendedorMain; //Auxiliar...
@@ -32,6 +32,7 @@ public class Ventana extends JFrame implements ActionListener{
         setResizable(false);
 
         iniciarPaneles();
+        
         expendedorMain = new Expendedor(4,200,panel1);
         PrecioBebida = String.valueOf(expendedorMain.getPrecio());
         iniciarComponentes(); 
@@ -41,7 +42,6 @@ public class Ventana extends JFrame implements ActionListener{
         comprador.crearMonedas(1, 4, panel1,expendedorMain,0,botonVuelto,comprar);
         comprador.crearMonedas(2,4,panel1,expendedorMain,0,botonVuelto,comprar);
         
-
     }
     
     private void iniciarComponentes(){
@@ -92,12 +92,28 @@ public class Ventana extends JFrame implements ActionListener{
         ImageIcon imagenSprite = new ImageIcon("sprite.png");
         sprite.setBounds(860,200,55,55);
         sprite.setIcon(new ImageIcon(imagenSprite.getImage().getScaledInstance(sprite.getWidth(),sprite.getHeight(),Image.SCALE_SMOOTH)));
+
+        // Boton Rellenar coca
+        rellenarCoca = new JButton("Refill");
+        rellenarCoca.setBounds(5, 97, 90, 50);
+        rellenarCoca.setEnabled(false);
+
+        rellenarFanta = new JButton("Refill");
+        rellenarFanta.setBounds(5, 197, 90, 50);
+        rellenarFanta.setEnabled(false);
+
+        rellenarSprite = new JButton("Refill");
+        rellenarSprite.setBounds(5, 297, 90, 50);
+        rellenarSprite.setEnabled(false);
         
         panel1.add(botonVuelto);
         panel1.add(comprar);
         panel1.add(coca);
         panel1.add(fanta);
         panel1.add(sprite);
+        panel1.add(rellenarCoca);
+        panel1.add(rellenarFanta);
+        panel1.add(rellenarSprite);
    
     }
     private void iniciarEtiquetas(){
