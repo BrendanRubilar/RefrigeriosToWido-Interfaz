@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 
 public class Ventana extends JFrame implements ActionListener{
 
-    
     public JPanel panel1;
     public JPanel panel2;
     JButton coca, fanta, sprite, comprar, botonVuelto, rellenarCoca, rellenarSprite, rellenarFanta;
