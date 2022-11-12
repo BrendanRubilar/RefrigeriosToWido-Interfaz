@@ -19,6 +19,7 @@ class Fanta extends Bebida {
         lataFanta.setBounds(X,205,50,40);
         lataFanta.setIcon(new ImageIcon(imagenLataFanta.getImage().getScaledInstance(lataFanta.getWidth(),lataFanta.getHeight(),Image.SCALE_SMOOTH)));
         target.add(lataFanta);
+        target.setComponentZOrder(lataFanta,0);
         EliminarBebida eliminar = new EliminarBebida(lataFanta,serie);
     }
 
@@ -39,6 +40,7 @@ class Sprite extends Bebida{
         lataSprite.setBounds(X,305,50,40);
         lataSprite.setIcon(new ImageIcon(imagenLataSprite.getImage().getScaledInstance(lataSprite.getWidth(),lataSprite.getHeight(),Image.SCALE_SMOOTH)));
         target.add(lataSprite);
+        target.setComponentZOrder(lataSprite,0);
         EliminarBebida eliminar = new EliminarBebida(lataSprite,serie);
 
     }
@@ -60,6 +62,7 @@ class CocaCola extends Bebida {
         lataCoca.setBounds(X,105,50,40);
         lataCoca.setIcon(new ImageIcon(imagenLataCoca.getImage().getScaledInstance(lataCoca.getWidth(),lataCoca.getHeight(),Image.SCALE_SMOOTH)));
         target.add(lataCoca);
+        target.setComponentZOrder(lataCoca, 0);
         EliminarBebida eliminar = new EliminarBebida(lataCoca,serie);
     }
 

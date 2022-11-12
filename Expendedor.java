@@ -82,7 +82,7 @@ class Expendedor extends JLabel{
                 coca.addBebida(new CocaCola(X,target,10000+i));
                 X=X+50;
                 System.out.println("Se añadieron CocaColas");
-                repaint();
+                
             }
         }
         if(fanta.hayBebidas()==false){
@@ -90,7 +90,7 @@ class Expendedor extends JLabel{
                 fanta.addBebida(new Fanta(Y,target,20000+i));
                 Y=Y+50;
                 System.out.println("Se añadieron Fantas");
-                repaint();
+                
             }
         }
         if(sprite.hayBebidas()==false){
@@ -98,9 +98,10 @@ class Expendedor extends JLabel{
                 sprite.addBebida(new Sprite(Z,target,30000+i));
                 Z=Z+50;
                 System.out.println("Se añadieron Sprites");
-                repaint();
+                
             }
         }
+        repaint();
     }
 
     public void sacarBebida(int bebidaSeleccionada){
