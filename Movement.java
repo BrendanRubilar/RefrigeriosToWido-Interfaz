@@ -143,8 +143,15 @@ public class Movement extends JLabel implements MouseListener,MouseMotionListene
 				if(target.isVisible()==false){
 
 					target.setLocation(1000, 0); //No elimina objeto, lo manda a china no mas, tener en consideracion
+					
+					//Agregar un condicional que compruebe si hay de la bebida que se quiere comprar y entonces y solo entonces realizar estas dos cosas
+					
+					
 					enviarMoneda(moneda);
-					moneda = null;
+					moneda=null;
+					
+
+
 
 				}
 			}

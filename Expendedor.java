@@ -9,11 +9,14 @@ class Expendedor extends JLabel{
     private Deposito coca;
     private Deposito sprite;
     private DepositoMonedas vuelto;
+    private DepositoMonedas Usadas;
     private int Precio;
     private Moneda monedaDepositada;
     private int cantidadDeMonedasAdevolver;
     public int cantidad;
     public JPanel target;
+    
+
 
     public Expendedor(){
 
@@ -30,6 +33,7 @@ class Expendedor extends JLabel{
         sprite = new Deposito();
         fanta = new Deposito();
         vuelto = new DepositoMonedas();
+        Usadas = new DepositoMonedas();
 
         for (int i = 0; i < cantidad; i++) {
             coca.addBebida(new CocaCola(X,target,1000+i));
@@ -132,8 +136,13 @@ class Expendedor extends JLabel{
         return monedaDepositada.getSerie();
     }
 
+    
+
+
     //Este se invoca desde el constructor de Comprador
     public void comprarBebida(int bebidaSeleccionada){
+   
+        
         //Lo primero que se debe hacer es verificar si la moneda es nula, de ser así no se sigue ejecutando el codigo
         if( Objects.isNull(monedaDepositada)){
             try{
@@ -155,14 +164,19 @@ class Expendedor extends JLabel{
             //Este codigo está encargado de verificar todos los casos y realizar la compra de la bebida
             if(monedaDepositada.getValues() == this.Precio && booleanAux){
                 sacarBebida(bebidaSeleccionada);
+                Usadas.addMoneda(monedaDepositada); //Enviar la moneda usada al deposito de monedas Usadas
+                System.out.println(Usadas.listIsEmpty());
                 this.recibirMoneda(null);
+                
 
 
-            }else if(monedaDepositada.getValues() >= this.Precio){
+            }else if(monedaDepositada.getValues() > this.Precio){
 
                 if(booleanAux){
                     calcularVuelto(monedaDepositada.getValues());
                     sacarBebida(bebidaSeleccionada);
+                    Usadas.addMoneda(monedaDepositada);  //Enviar la moneda usada al deposito de monedas Usadas
+                    System.out.println(Usadas.listIsEmpty());
                     this.recibirMoneda(null);
                     
                 }else{

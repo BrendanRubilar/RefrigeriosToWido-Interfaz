@@ -9,6 +9,7 @@ public class RefillBebidas extends JLabel implements MouseListener,MouseMotionLi
     JLabel depositoSprite;
     Expendedor expendedor;
     public RefillBebidas(Expendedor expendedor1,JLabel depositoC,JLabel depositoF, JLabel depositoS){
+
         this.expendedor=expendedor1;
         depositoCoca=depositoC;
         depositoFanta=depositoF;
