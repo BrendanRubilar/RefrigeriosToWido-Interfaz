@@ -12,7 +12,8 @@ class Expendedor extends JLabel{
     private int Precio;
     private Moneda monedaDepositada;
     private int cantidadDeMonedasAdevolver;
-
+    public int cantidad;
+    public JPanel target;
 
     public Expendedor(){
 
@@ -22,6 +23,8 @@ class Expendedor extends JLabel{
     public Expendedor(int cantidad, int precio,JPanel target) {
         if(cantidad>=8) cantidad=8;  //Controlar limite de bebidas por deposito
         int X=110;
+        this.target=target;
+        this.cantidad=cantidad;
         this.Precio = precio ;
         coca = new Deposito();
         sprite = new Deposito();
@@ -70,6 +73,35 @@ class Expendedor extends JLabel{
         Thread animar = new Thread(new AnimationBebida(bebida));
         animar.start();
     }
+    public void rellenarBebidas(){
+        int X=110;
+        int Y=110;
+        int Z=110;
+        if(coca.hayBebidas()==false){
+            for (int i = 0; i < cantidad; i++) {
+                coca.addBebida(new CocaCola(X,target,10000+i));
+                X=X+50;
+                System.out.println("Se añadieron CocaColas");
+                repaint();
+            }
+        }
+        if(fanta.hayBebidas()==false){
+            for (int i = 0; i < cantidad; i++) {
+                fanta.addBebida(new Fanta(Y,target,20000+i));
+                Y=Y+50;
+                System.out.println("Se añadieron Fantas");
+                repaint();
+            }
+        }
+        if(sprite.hayBebidas()==false){
+            for (int i = 0; i < cantidad; i++) {
+                sprite.addBebida(new Sprite(Z,target,30000+i));
+                Z=Z+50;
+                System.out.println("Se añadieron Sprites");
+                repaint();
+            }
+        }
+    }
 
     public void sacarBebida(int bebidaSeleccionada){
             switch(bebidaSeleccionada){
@@ -104,7 +136,7 @@ class Expendedor extends JLabel{
         //Lo primero que se debe hacer es verificar si la moneda es nula, de ser así no se sigue ejecutando el codigo
         if( Objects.isNull(monedaDepositada)){
             try{
-                throw new Error3Exception("Moneda es Nula");
+                throw new Error3Exception("Error: Moneda es Nula");
             }catch(Error3Exception msg3){
                 System.out.println(msg3.getMessage());
             }
@@ -136,11 +168,11 @@ class Expendedor extends JLabel{
                   try{
                        switch(bebidaSeleccionada){
                         case 0:
-                            throw new Error3Exception("No queda CocaCola");
+                            throw new Error3Exception("Error: No queda CocaCola");
                         case 1:
-                            throw new Error3Exception("No queda Fanta");
+                            throw new Error3Exception("Error: No queda Fanta");
                         case 2:
-                            throw new Error3Exception("No queda Sprite");
+                            throw new Error3Exception("Error: No queda Sprite");
                         default:
                             throw new Error3Exception("Seleccione una bebida valida");
                     }
@@ -156,7 +188,7 @@ class Expendedor extends JLabel{
             }else{ 
                 try{
                     if(monedaDepositada.getValues() < this.Precio){
-                        throw new Error1Exception("No hay saldo suficiente");
+                        throw new Error1Exception("Error: No hay saldo suficiente");
                     }
                 }catch(Error1Exception e){
                         monedaDepositada.getLabel().setLocation(420,485);

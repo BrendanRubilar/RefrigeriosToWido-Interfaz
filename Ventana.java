@@ -11,9 +11,8 @@ import javax.swing.JPanel;
 public class Ventana extends JFrame implements ActionListener{
 
     public JPanel panel1;
-    public JPanel panel2;
     JButton coca, fanta, sprite, comprar, botonVuelto, rellenarCoca, rellenarSprite, rellenarFanta;
-    JLabel BebidaSelec, monedaV;
+    JLabel BebidaSelec, monedaV,verCoca, verFanta, verSprite;
     String PrecioBebida;
     Expendedor expendedorMain; //Auxiliar...
     Movement movimiento500; //testing...
@@ -41,6 +40,7 @@ public class Ventana extends JFrame implements ActionListener{
         comprador.crearMonedas(1, 4, panel1,expendedorMain,0,botonVuelto,comprar);
         comprador.crearMonedas(2,4,panel1,expendedorMain,0,botonVuelto,comprar);
         
+        RefillBebidas rellenar = new RefillBebidas(expendedorMain, verCoca, verFanta, verSprite);
     }
     
     private void iniciarComponentes(){
@@ -121,14 +121,14 @@ public class Ventana extends JFrame implements ActionListener{
         JLabel insertarMoneda = new JLabel();
         JLabel color1 = new JLabel();
         JLabel color2 = new JLabel();
-        JLabel verCoca = new JLabel();
-        JLabel verFanta = new JLabel();
-        JLabel verSprite = new JLabel();
         JLabel salidaBebida = new JLabel();
         JLabel salidaMonedas = new JLabel();
         JLabel marcoTexto = new JLabel();
         JLabel marcoTexto2 = new JLabel();
         JLabel lineaB = new JLabel();
+        verCoca = new JLabel();
+        verFanta = new JLabel();
+        verSprite = new JLabel();
 
         ImageIcon imagenInsertarMoneda = new ImageIcon("insertarMoneda.jpeg");
         insertarMoneda.setBounds(690,300,50,70); 
