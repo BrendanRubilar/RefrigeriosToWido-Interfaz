@@ -7,6 +7,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import java.awt.Cursor;
+import java.awt.Toolkit;
+import java.lang.Object;
+import java.awt.Point;
 
 public class Ventana extends JFrame implements ActionListener{
 
@@ -23,6 +27,11 @@ public class Ventana extends JFrame implements ActionListener{
     
     public Ventana(){
 
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Image image = toolkit.getImage("manoDe.png");
+        Cursor c = toolkit.createCustomCursor(image , new Point(this.getX(), this.getY()), "img");
+        this.setCursor (c);
+
         setSize(1000,700);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -35,12 +44,17 @@ public class Ventana extends JFrame implements ActionListener{
         PrecioBebida = String.valueOf(expendedorMain.getPrecio());
         iniciarComponentes(); 
 
+
+
         comprador = new Comprador(botonVuelto,comprar); 
         comprador.crearMonedas(0, 4, panel1,expendedorMain,0,botonVuelto,comprar);
         comprador.crearMonedas(1, 4, panel1,expendedorMain,0,botonVuelto,comprar);
         comprador.crearMonedas(2,4,panel1,expendedorMain,0,botonVuelto,comprar);
+
+        this.setVisible(true);
+
+
         
-        //RefillBebidas rellenar = new RefillBebidas(expendedorMain, verCoca, verFanta, verSprite);
     }
     
     private void iniciarComponentes(){
@@ -120,14 +134,18 @@ public class Ventana extends JFrame implements ActionListener{
         JLabel marcoTexto = new JLabel();
         JLabel marcoTexto2 = new JLabel();
         JLabel lineaB = new JLabel();
+        JLabel inventarioBebidas = new JLabel();
+        
 
         BebidaSelec = new JLabel();
         verCoca = new JLabel();
         verFanta = new JLabel();
         verSprite = new JLabel();
 
-
-
+        inventarioBebidas.setBounds(605,450,380,400);
+        ImageIcon imagenInventario = new ImageIcon("madera.jpg");
+        inventarioBebidas.setIcon(new ImageIcon(imagenInventario.getImage().getScaledInstance(inventarioBebidas.getWidth(),inventarioBebidas.getHeight(),Image.SCALE_SMOOTH)));
+        
         refill.setBounds(0,0,595,70);
         refill.setFont(new Font("Cascadia Mono SemiBold", Font.BOLD, 14));
 
@@ -183,6 +201,8 @@ public class Ventana extends JFrame implements ActionListener{
         salidaMonedas.setBounds(420,485,70,70);
         salidaMonedas.setIcon(new ImageIcon(cajaB.getImage().getScaledInstance(salidaMonedas.getWidth(),salidaMonedas.getHeight(),Image.SCALE_SMOOTH)));
         
+
+        panel1.add(inventarioBebidas);
         panel1.add(refill);
         panel1.add(Precio);
         panel1.add(BebidaSelec);
