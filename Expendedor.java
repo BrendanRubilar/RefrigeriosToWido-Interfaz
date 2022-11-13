@@ -1,8 +1,6 @@
 import java.util.Objects;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 
 class Expendedor extends JLabel{
     private Deposito fanta;
@@ -16,15 +14,13 @@ class Expendedor extends JLabel{
     public int cantidad;
     public JPanel target;
     
-
-
     public Expendedor(){
 
     }
     //La maquina tiene un deposito donde almacena el vuelto a entregar
     //Constructor del expendedor, se le entrega la cantidad de bebidas y el precio (Valores iguales para todos los depositos)
     public Expendedor(int cantidad, int precio,JPanel target) {
-        if(cantidad>=8) cantidad=8;  //Controlar limite de bebidas por deposito
+        if(cantidad>=6) cantidad=6;  //Controlar limite de bebidas por deposito
         int X=110;
         this.target=target;
         this.cantidad=cantidad;
@@ -50,6 +46,7 @@ class Expendedor extends JLabel{
             return false;
         }
     }
+
     public int CantidadDevolver(){
         return cantidadDeMonedasAdevolver;
     }
@@ -59,14 +56,12 @@ class Expendedor extends JLabel{
     }
 
     //Metodo devolver el vuelto (Debe ir eliminado de una en una moneda hasta retornar null)
-    public void calcularVuelto(int valorDeLaMoneda){
-        
+    public void calcularVuelto(int valorDeLaMoneda){ 
         cantidadDeMonedasAdevolver = (valorDeLaMoneda-this.Precio)/100;
         //Este for entregara monedas de 100 en 100 hasta vaciar el deposito de Vuelto
         for (int i = 0; i < cantidadDeMonedasAdevolver; i++){
             vuelto.addMoneda(new Moneda100());
         }
-
     }
 
     public void entregarVuelto(){      
@@ -77,6 +72,7 @@ class Expendedor extends JLabel{
         Thread animar = new Thread(new AnimationBebida(bebida));
         animar.start();
     }
+
     public void rellenarBebidas(){
         int X=110;
         int Y=110;
@@ -85,8 +81,7 @@ class Expendedor extends JLabel{
             for (int i = 0; i < cantidad; i++) {
                 coca.addBebida(new CocaCola(X,target,10000+i));
                 X=X+50;
-                System.out.println("Se añadieron CocaColas");
-                
+                System.out.println("Se añadieron CocaColas"); 
             }
         }
         if(fanta.hayBebidas()==false){
@@ -94,7 +89,6 @@ class Expendedor extends JLabel{
                 fanta.addBebida(new Fanta(Y,target,20000+i));
                 Y=Y+50;
                 System.out.println("Se añadieron Fantas");
-                
             }
         }
         if(sprite.hayBebidas()==false){
@@ -102,7 +96,6 @@ class Expendedor extends JLabel{
                 sprite.addBebida(new Sprite(Z,target,30000+i));
                 Z=Z+50;
                 System.out.println("Se añadieron Sprites");
-                
             }
         }
         repaint();
@@ -136,13 +129,9 @@ class Expendedor extends JLabel{
         return monedaDepositada.getSerie();
     }
 
-    
-
-
     //Este se invoca desde el constructor de Comprador
     public void comprarBebida(int bebidaSeleccionada){
    
-        
         //Lo primero que se debe hacer es verificar si la moneda es nula, de ser así no se sigue ejecutando el codigo
         if( Objects.isNull(monedaDepositada)){
             try{
@@ -160,27 +149,21 @@ class Expendedor extends JLabel{
                         break;
              case 2: booleanAux= sprite.hayBebidas();
             }
-
             //Este codigo está encargado de verificar todos los casos y realizar la compra de la bebida
             if(monedaDepositada.getValues() == this.Precio && booleanAux){
                 sacarBebida(bebidaSeleccionada);
                 Usadas.addMoneda(monedaDepositada); //Enviar la moneda usada al deposito de monedas Usadas
-                System.out.println(Usadas.listIsEmpty());
                 this.recibirMoneda(null);
-                
-
 
             }else if(monedaDepositada.getValues() > this.Precio){
-
                 if(booleanAux){
                     calcularVuelto(monedaDepositada.getValues());
                     sacarBebida(bebidaSeleccionada);
                     Usadas.addMoneda(monedaDepositada);  //Enviar la moneda usada al deposito de monedas Usadas
-                    System.out.println(Usadas.listIsEmpty());
                     this.recibirMoneda(null);
-                    
+
                 }else{
-                  try{
+                    try{
                        switch(bebidaSeleccionada){
                         case 0:
                             throw new Error3Exception("Error: No queda CocaCola");
@@ -190,7 +173,7 @@ class Expendedor extends JLabel{
                             throw new Error3Exception("Error: No queda Sprite");
                         default:
                             throw new Error3Exception("Seleccione una bebida valida");
-                    }
+                        }
                     }catch(Error3Exception msg3){
                         if(bebidaSeleccionada==0||bebidaSeleccionada==1||bebidaSeleccionada==2){
                             monedaDepositada.getLabel().setLocation(420,485);
@@ -209,8 +192,7 @@ class Expendedor extends JLabel{
                         monedaDepositada.getLabel().setLocation(420,485);
                         monedaDepositada.getLabel().setVisible(true);
                         repaint();
-                
-                    System.out.println(e.getMessage());
+                        System.out.println(e.getMessage());
                 }
             }   
         }

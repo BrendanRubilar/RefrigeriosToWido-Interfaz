@@ -4,9 +4,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 abstract class Bebida extends JLabel{
-
     abstract JLabel getLabel();
-    
 }
 
 class Fanta extends Bebida {
@@ -20,7 +18,7 @@ class Fanta extends Bebida {
         lataFanta.setIcon(new ImageIcon(imagenLataFanta.getImage().getScaledInstance(lataFanta.getWidth(),lataFanta.getHeight(),Image.SCALE_SMOOTH)));
         target.add(lataFanta);
         target.setComponentZOrder(lataFanta,0);
-        EliminarBebida eliminar = new EliminarBebida(lataFanta,serie);
+        EliminarBebida eliminar = new EliminarBebida(X,lataFanta,serie);
     }
 
     @Override
@@ -41,7 +39,7 @@ class Sprite extends Bebida{
         lataSprite.setIcon(new ImageIcon(imagenLataSprite.getImage().getScaledInstance(lataSprite.getWidth(),lataSprite.getHeight(),Image.SCALE_SMOOTH)));
         target.add(lataSprite);
         target.setComponentZOrder(lataSprite,0);
-        EliminarBebida eliminar = new EliminarBebida(lataSprite,serie);
+        EliminarBebida eliminar = new EliminarBebida(X,lataSprite,serie);
 
     }
 
@@ -63,7 +61,7 @@ class CocaCola extends Bebida {
         lataCoca.setIcon(new ImageIcon(imagenLataCoca.getImage().getScaledInstance(lataCoca.getWidth(),lataCoca.getHeight(),Image.SCALE_SMOOTH)));
         target.add(lataCoca);
         target.setComponentZOrder(lataCoca, 0);
-        EliminarBebida eliminar = new EliminarBebida(lataCoca,serie);
+        EliminarBebida eliminar = new EliminarBebida(X,lataCoca,serie);
     }
 
     @Override

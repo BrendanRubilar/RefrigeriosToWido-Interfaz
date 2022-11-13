@@ -9,52 +9,45 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.Cursor;
 import java.awt.Toolkit;
-import java.lang.Object;
 import java.awt.Point;
 
 public class Ventana extends JFrame implements ActionListener{
 
-    public JPanel panel1;
+    JPanel panel1;
     JButton coca, fanta, sprite, comprar, botonVuelto, rellenarExpendedor;
     JLabel BebidaSelec, monedaV,verCoca, verFanta, verSprite;
     String PrecioBebida;
-    Expendedor expendedorMain; //Auxiliar...
-    Movement movimiento500; //testing...
+    Expendedor expendedorMain; 
+    Movement movimiento500; 
     Comprador comprador;
     int selectedB=9;
     boolean compraEfectuada = false;
     
-    
     public Ventana(){
-
+        //Cambiar imagen del cursor
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Image image = toolkit.getImage("manoDe.png");
         Cursor c = toolkit.createCustomCursor(image , new Point(this.getX(), this.getY()), "img");
         this.setCursor (c);
 
+        //Propiedade de la ventana
         setSize(1000,700);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Refrigerios ToWido");
         setResizable(false);
 
+        //Iniciar paneles y componenetes
         iniciarPaneles();
-        
-        expendedorMain = new Expendedor(2,200,panel1);
+        expendedorMain = new Expendedor(6,200,panel1);
         PrecioBebida = String.valueOf(expendedorMain.getPrecio());
         iniciarComponentes(); 
-
-
-
         comprador = new Comprador(botonVuelto,comprar); 
         comprador.crearMonedas(0, 4, panel1,expendedorMain,0,botonVuelto,comprar);
         comprador.crearMonedas(1, 4, panel1,expendedorMain,0,botonVuelto,comprar);
         comprador.crearMonedas(2,4,panel1,expendedorMain,0,botonVuelto,comprar);
 
         this.setVisible(true);
-
-
-        
     }
     
     private void iniciarComponentes(){
@@ -69,14 +62,12 @@ public class Ventana extends JFrame implements ActionListener{
     }
     
     private void iniciarBotones(){
-
         //Botón comprar
         comprar = new JButton();
         comprar.addActionListener(this);
         ImageIcon imagenComprar = new ImageIcon("botonCompra.png");
         comprar.setBounds(770,300,55,55);
         comprar.setIcon(new ImageIcon(imagenComprar.getImage().getScaledInstance(comprar.getWidth(),comprar.getHeight(),Image.SCALE_SMOOTH)));
-
         //Botón vuelto
         botonVuelto = new JButton();
         botonVuelto.addActionListener(this);
@@ -84,46 +75,41 @@ public class Ventana extends JFrame implements ActionListener{
         botonVuelto.setBounds(860,300,55,55);
         botonVuelto.setIcon(new ImageIcon(imagenVuelto.getImage().getScaledInstance(botonVuelto.getWidth(),botonVuelto.getHeight(),Image.SCALE_SMOOTH)));
         botonVuelto.setMnemonic('b');
-
         //Botón cocacola
         coca = new JButton();
         coca.addActionListener(this);
         ImageIcon imagenCoca = new ImageIcon("coca.png");
         coca.setBounds(680,200,55,55);
         coca.setIcon(new ImageIcon(imagenCoca.getImage().getScaledInstance(coca.getWidth(),coca.getHeight(),Image.SCALE_SMOOTH)));
-
-        // Boton fanta
+        //Boton fanta
         fanta = new JButton();
         fanta.addActionListener(this);
-        ImageIcon imagenFanta = new ImageIcon("fanta.jpg");
+        ImageIcon imagenFanta = new ImageIcon("fanta.png");
         fanta.setBounds(770,200,55,55);
         fanta.setIcon(new ImageIcon(imagenFanta.getImage().getScaledInstance(fanta.getWidth(),fanta.getHeight(),Image.SCALE_SMOOTH)));
-        
-        // Boton sprite
+        //Boton sprite
         sprite = new JButton();
         sprite.addActionListener(this);
         ImageIcon imagenSprite = new ImageIcon("sprite.png");
         sprite.setBounds(860,200,55,55);
         sprite.setIcon(new ImageIcon(imagenSprite.getImage().getScaledInstance(sprite.getWidth(),sprite.getHeight(),Image.SCALE_SMOOTH)));
-
         // Boton Rellenar coca
         rellenarExpendedor = new JButton();
         ImageIcon botonRefill = new ImageIcon("botonRefill.png");
-        rellenarExpendedor.setBounds(0, 0, 595, 70);
+        rellenarExpendedor.setBounds(0, 0, 595, 100);
         rellenarExpendedor.setEnabled(true);
         rellenarExpendedor.addActionListener(this);
         rellenarExpendedor.setIcon(new ImageIcon(botonRefill.getImage().getScaledInstance(rellenarExpendedor.getWidth(),rellenarExpendedor.getHeight(),Image.SCALE_SMOOTH)));
-
+        //Agregamos los botones al panel
         panel1.add(botonVuelto);
         panel1.add(comprar);
         panel1.add(coca);
         panel1.add(fanta);
         panel1.add(sprite);
         panel1.add(rellenarExpendedor);
-
-   
     }
     private void iniciarEtiquetas(){
+        //Creamos todas las etiquetas y las definimos
         JLabel refill = new JLabel("Recarga bebidas");
         JLabel Precio = new JLabel();
         JLabel insertarMoneda = new JLabel();
@@ -134,9 +120,8 @@ public class Ventana extends JFrame implements ActionListener{
         JLabel marcoTexto = new JLabel();
         JLabel marcoTexto2 = new JLabel();
         JLabel lineaB = new JLabel();
+        JLabel lineaB2 = new JLabel();
         JLabel inventarioBebidas = new JLabel();
-        
-
         BebidaSelec = new JLabel();
         verCoca = new JLabel();
         verFanta = new JLabel();
@@ -150,12 +135,15 @@ public class Ventana extends JFrame implements ActionListener{
         refill.setFont(new Font("Cascadia Mono SemiBold", Font.BOLD, 14));
 
         ImageIcon imagenInsertarMoneda = new ImageIcon("insertarMoneda.jpeg");
-        insertarMoneda.setBounds(690,300,50,70); 
+        insertarMoneda.setBounds(680,300,55,70); 
         insertarMoneda.setIcon(new ImageIcon(imagenInsertarMoneda.getImage().getScaledInstance(insertarMoneda.getWidth(),insertarMoneda.getHeight(),Image.SCALE_SMOOTH)));
 
         ImageIcon lineaM = new ImageIcon("lineaB.jpg");
         lineaB.setBounds(595,0,10,720);
         lineaB.setIcon(new ImageIcon(lineaM.getImage()));
+
+        lineaB2.setBounds(595,440,390,10);
+        lineaB2.setIcon(new ImageIcon(lineaM.getImage()));
 
         ImageIcon imagenMarco = new ImageIcon("marcoTexto.png");
         marcoTexto.setBounds(610,90,356, 50);
@@ -186,27 +174,28 @@ public class Ventana extends JFrame implements ActionListener{
         
         ImageIcon cajaB = new ImageIcon("cajaBebidas.jpg");
 
-        verCoca.setBounds(100,145,400,55);
+        verCoca.setBounds(100,145,325,55);
         verCoca.setIcon(new ImageIcon(cajaB.getImage().getScaledInstance(verCoca.getWidth(),verCoca.getHeight(),Image.SCALE_SMOOTH)));
         
-        verFanta.setBounds(100,245,400,55);
+        verFanta.setBounds(100,245,325,55);
         verFanta.setIcon(new ImageIcon(cajaB.getImage().getScaledInstance(verFanta.getWidth(),verFanta.getHeight(),Image.SCALE_SMOOTH)));
         
-        verSprite.setBounds(100,345,400,55);
+        verSprite.setBounds(100,345,325,55);
         verSprite.setIcon(new ImageIcon(cajaB.getImage().getScaledInstance(verSprite.getWidth(),verSprite.getHeight(),Image.SCALE_SMOOTH)));
         
-        salidaBebida.setBounds(100,485,300,70);
+        salidaBebida.setBounds(100,485,325,70);
         salidaBebida.setIcon(new ImageIcon(cajaB.getImage().getScaledInstance(salidaBebida.getWidth(),salidaBebida.getHeight(),Image.SCALE_SMOOTH)));
 
-        salidaMonedas.setBounds(420,485,70,70);
+        salidaMonedas.setBounds(445,485,70,70);
         salidaMonedas.setIcon(new ImageIcon(cajaB.getImage().getScaledInstance(salidaMonedas.getWidth(),salidaMonedas.getHeight(),Image.SCALE_SMOOTH)));
         
-
+        //Se añaden las etiquetas al panel
         panel1.add(inventarioBebidas);
         panel1.add(refill);
         panel1.add(Precio);
         panel1.add(BebidaSelec);
         panel1.add(lineaB);
+        panel1.add(lineaB2);
         panel1.add(marcoTexto);
         panel1.add(marcoTexto2);        
         panel1.add(insertarMoneda);
@@ -217,13 +206,11 @@ public class Ventana extends JFrame implements ActionListener{
         panel1.add(salidaMonedas);
         panel1.add(salidaBebida);
         panel1.add(color1);
-
     }
 
     //CONTROL DE LOS BOTONES
     @Override
 	public void actionPerformed(ActionEvent e) {
-
 		if(e.getSource()==coca) {
             BebidaSelec.setText(" BEBIDA SELECCIONADA: COCA-COLA");
             selectedB=0;
@@ -231,33 +218,21 @@ public class Ventana extends JFrame implements ActionListener{
         if(e.getSource()==fanta){
             BebidaSelec.setText(" BEBIDA SELECCIONADA: FANTA");
             selectedB=1;
-            
         }
         if(e.getSource()==sprite){
             BebidaSelec.setText(" BEBIDA SELECCIONADA: SPRITE");
             selectedB=2;
-
-        }
-
-        if(e.getSource()==botonVuelto){ //PARA DEVOLVER DE 100
-
-            //Bandera
+        }   
+        if(e.getSource()==botonVuelto){//PARA DEVOLVER DE 100
             if(expendedorMain.hayVuelto()){
-
                 for(int i=0; i < expendedorMain.CantidadDevolver() ; i++){
                     expendedorMain.entregarVuelto(); 
                     comprador.crearMonedas(3, 1, panel1,expendedorMain,1,botonVuelto,comprar);
                     repaint();
-
                 }
-
             } 
-            
         }
-
         if(e.getSource()==comprar){
-
-            
             switch(selectedB){
                 case 0:
                     System.out.println("Recibiendo Coca");
@@ -280,14 +255,10 @@ public class Ventana extends JFrame implements ActionListener{
                     System.out.println("Seleccione una bebida");
                     break;
             }
-        
         }
         if(e.getSource()==rellenarExpendedor){
             expendedorMain.rellenarBebidas();
             repaint();
-
         }
-
     }
-
 }
