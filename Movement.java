@@ -68,8 +68,7 @@ public class Movement extends JLabel implements MouseListener,MouseMotionListene
 		if( (target.getX()>=670 && target.getX()<=720)&&(target.getY()>=280 && target.getY()<=350) ){
 			
 			target.setVisible(false);
-			//SOLO PARA TESTEAR!
-			System.out.println("Valor moneda: " + moneda.getValues());
+			System.out.println("Valor moneda: " + moneda.getValues()); //SOLO PARA TESTEAR!
 
 		}
 
@@ -138,7 +137,7 @@ public class Movement extends JLabel implements MouseListener,MouseMotionListene
 
 		if(e.getSource()==comprar){
 
-			if( (target.getX()>=690 && target.getX()<=760)&&(target.getY()>=290 && target.getY()<=380) ){
+			if( (target.getX()>=670 && target.getX()<=720)&&(target.getY()>=280 && target.getY()<=350) ){
 
 				if(target.isVisible()==false){
 
@@ -154,7 +153,7 @@ public class Movement extends JLabel implements MouseListener,MouseMotionListene
 
 		if(e.getSource()==botonVuelto){
 
-			if( (target.getX()>=690 && target.getX()<=760)&&(target.getY()>=290 && target.getY()<=380) ){
+			if( (target.getX()>=670 && target.getX()<=720)&&(target.getY()>=280 && target.getY()<=350) ){
 
 				target.setLocation(420,485);
 				target.setVisible(true);
