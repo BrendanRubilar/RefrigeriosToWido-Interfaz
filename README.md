@@ -1,6 +1,6 @@
 # RefrigeriosToWido-Interfaz
-Tarea 3 - Programación II
-
-Integrantes:
-
-Brendan Rubilar / Tomás Cid / Pedro Muñoz
+## Tarea 3: 
+### Integrantes:
+###  > Brendan Rubilar Vivanco
+###  > Pedro Muñoz Solano
+###  > Tomás Cid Muñoz
